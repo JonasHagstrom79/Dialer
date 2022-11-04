@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Dialer</string>
+    <string name="menu_question">Vad vill du göra?</string>
+    <string name="btn_dial">Ring</string>
+    <string name="btn_callList">Samtalslista</string>
+    <string name="btn_settings">Inställningar</string>
+    <string name="btn_map">Karta</string>
+    <string name="btn_about">Om</string>
+    <string name="textView_dial">Detta är aktiviteten för dial</string>
+    <string name="textView_CallList">Detta är aktiviteten för call list</string>
+    <string name="title_activity_settings">InställningarAktivitet</string>
+    <string name="messages_header">Meddelanden</string>
+    <string name="sync_header">Synkronisera</string>
+    <string name="signature_title">Din signatur</string>
+    <string name="reply_title">Standardsvarsåtgärd</string>
+    <string name="sync_title">Synkronisera e-post med jämna mellanrum</string>
+    <string name="attachment_title">Ladda ner inkommande bilagor</string>
+    <string name="attachment_summary_on">ladda ner bilagor för inkommande e-postmeddelanden automatiskt</string>
+    <string name="attachment_summary_off">Ladda bara ned bilagor när det begärs manuellt</string>
+    <string name="title_activity_maps">KartAktivitet</string>
+</resources>
