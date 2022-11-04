@@ -19,6 +19,16 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, DialActivity.class));
         });
 
+        Button button2 = findViewById(R.id.button2);
+        button2.setOnClickListener(view -> {
+            startActivity(new Intent(MainActivity.this, CallListActivity.class));
+        });
+
+        Button button3 = findViewById(R.id.button3);
+        button3.setOnClickListener(view -> {
+            startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+        });
+
 
     }
 
