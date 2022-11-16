@@ -19,4 +19,8 @@
     <string name="attachment_summary_on">ladda ner bilagor för inkommande e-postmeddelanden automatiskt</string>
     <string name="attachment_summary_off">Ladda bara ned bilagor när det begärs manuellt</string>
     <string name="title_activity_maps">KartAktivitet</string>
+    <string name="textDialpadTitle">1</string>
+    <string name="textDialpadMessage">ABC</string>
+    <string name="textTitle">2</string>
+    <string name="textMessage">ASDF</string>
 </resources>
