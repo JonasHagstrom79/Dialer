@@ -41,13 +41,10 @@
         android:id="@+id/dialpadButton2"
         android:layout_width="50dp"
         android:layout_height="100dp"
-        android:layout_marginBottom="68dp"
-        app:layout_constraintBottom_toTopOf="@+id/dialpadButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/dialpadButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.987"
         app:message="ghi"
         app:title="3" />
 
@@ -67,9 +64,8 @@
         android:layout_height="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dialpadButton"
+        app:layout_constraintStart_toEndOf="@+id/dialpadButton"
+        app:layout_constraintTop_toTopOf="parent"
         app:message="def"
         app:title="2" />
 
