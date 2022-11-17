@@ -60,7 +60,6 @@ public class DialpadButton extends ConstraintLayout {
                 R.styleable.DialpadButton, // Our custom attributes to be retrieved (in res/values/attrs.xml).
                 0,0); // 0 = do to not look for default values
 
-
         String mess;
         String title;
 
@@ -82,7 +81,6 @@ public class DialpadButton extends ConstraintLayout {
         setSaveEnabled(true);
 
     }
-
 
     /**
      * Animates the click on the component
