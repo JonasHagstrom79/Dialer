@@ -23,4 +23,15 @@
     <string name="textDialpadMessage">ABC</string>
     <string name="textTitle">2</string>
     <string name="textMessage">ASDF</string>
+    <string name="about_message">"Den här appen är tänkt att efterlikna knappsatsen\n" +
+                                "på en telefon. Den här appen kommer att bestå av \n" +
+                                "följaende:\n\n" +
+                                "* Ange nummer för att ringa\n" +
+                                "* Se tidigare slagna nummer\n" +
+                                "* Ändra knappinställningarna\n" +
+                                "* Visa på en karta varifrån tidigare samtal har ringts"</string>
+    <string name="title_about">Om</string>
+    <string name="btn_ok">OK</string>
+    <string name ="toast_ok">Selected Option: OK</string>
+    <string name ="toast_msg">Innehållet har redan visats</string>
 </resources>

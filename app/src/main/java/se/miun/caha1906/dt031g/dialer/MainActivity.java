@@ -1,21 +1,29 @@
 package se.miun.caha1906.dt031g.dialer;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String KEY_ABOUT_VALUE = "Aboutvalue";
+    private boolean about = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Log.d("Mainactivity","L25 onCreate"); //TODO: Remove!
 
         Button button = findViewById(R.id.button);
         button.setOnClickListener(view -> {
@@ -39,26 +47,50 @@ public class MainActivity extends AppCompatActivity {
 
         Button button5 = findViewById(R.id.button5);
         button5.setOnClickListener(view -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-            builder.setTitle("About")
-                    .setMessage("This app is supposed to mimic the keypad\n" +
-                                "on a phone. Ths app willl consist of\n" +
-                                "activities to:\n\n" +
-                                "* Enter numbers to dial\n" +
-                                "* See previously dialed numbers\n" +
-                                "* Change th keypad settings\n" +
-                                "* Show on a Map where previous calls are dialed from")
-                    .setCancelable(false)
-                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            Toast.makeText(MainActivity.this,"Selected Option: Ok", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-            AlertDialog dialog = builder.create();
-            dialog.show();
+            if (!about) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle(R.string.title_about)
+                        .setMessage(R.string.about_message)
+                        .setCancelable(false)
+                        .setPositiveButton(R.string.btn_ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Toast.makeText(MainActivity.this, R.string.toast_ok, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                about = true;
+                Log.d("Mainactivity", "L62 onButton5: about.value = " + about); //TODO: Remove!
+            } else {
+                Context context = getApplicationContext();
+                //CharSequence text = "Content already viewed";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, R.string.toast_msg, duration);
+                toast.show();
+            }
 
         });
+
+        if (savedInstanceState != null) {
+            //Log.d("MainActivity","L66 onCreate: about.value = " + about);
+            boolean value = savedInstanceState.getBoolean(KEY_ABOUT_VALUE);
+            // Reset value
+            about = value;
+            Log.d("MainActivity","L66 onCreate: about.value = " + about); //TODO: Remove!
+        }
+
+    }
+
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        Log.d("@Override","onSavedInstanceState: about.value = " + about);
+        outState.putBoolean("Aboutvalue", about);
+
+        super.onSaveInstanceState(outState);
+
 
     }
 
