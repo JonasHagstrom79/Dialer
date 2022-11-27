@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String KEY_ABOUT_VALUE = "Aboutvalue";
     private boolean about = false;
 
+    SoundPlayer s;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button button2 = findViewById(R.id.button2);
         button2.setOnClickListener(view -> {
+            //s.testXX(); // not working
             startActivity(new Intent(MainActivity.this, CallListActivity.class));
         });
 
@@ -47,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button button5 = findViewById(R.id.button5);
         button5.setOnClickListener(view -> {
+            // If about have not been clicked
             if (!about) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle(R.string.title_about)
@@ -60,11 +64,12 @@ public class MainActivity extends AppCompatActivity {
                         });
                 AlertDialog dialog = builder.create();
                 dialog.show();
+                // Set the value to "clicked" or true
                 about = true;
                 Log.d("Mainactivity", "L62 onButton5: about.value = " + about); //TODO: Remove!
+            // If about have been clicked
             } else {
                 Context context = getApplicationContext();
-                //CharSequence text = "Content already viewed";
                 int duration = Toast.LENGTH_SHORT;
 
                 Toast toast = Toast.makeText(context, R.string.toast_msg, duration);
@@ -74,9 +79,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         if (savedInstanceState != null) {
-            //Log.d("MainActivity","L66 onCreate: about.value = " + about);
+
             boolean value = savedInstanceState.getBoolean(KEY_ABOUT_VALUE);
-            // Reset value
+            // Resets the value
             about = value;
             Log.d("MainActivity","L66 onCreate: about.value = " + about); //TODO: Remove!
         }
@@ -86,12 +91,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
-        Log.d("@Override","onSavedInstanceState: about.value = " + about);
+
+        Log.d("@Override","L90 onSavedInstanceState: about.value = " + about); //TODO: Remove!
         outState.putBoolean("Aboutvalue", about);
 
         super.onSaveInstanceState(outState);
-
-
     }
 
 

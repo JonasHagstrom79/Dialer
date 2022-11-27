@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -15,8 +16,12 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class DialpadButton extends ConstraintLayout {
 
+    // To get the sound
+    SoundPlayer s = SoundPlayer.getInstance(getContext());
 
     private static final String UNDEFINED = "";
+
+    DialpadButton d = this;//test
 
     /**
      * Default constructor for java code
@@ -87,20 +92,25 @@ public class DialpadButton extends ConstraintLayout {
      */
     @SuppressLint("ClickableViewAccessibility")
     private void animateClick() {
-        setOnTouchListener((view, motionEvent) -> {
 
+        setOnTouchListener((view, motionEvent) -> {
+            Log.i("tag", "animateClick och view: " +view);
+            Log.i("tag", "animateClick och dialpadbutton: " +d);
             switch (motionEvent.getAction()) {
                 // When pushed
                 case MotionEvent.ACTION_DOWN:
                     animate().alpha(0f).setDuration(500).start();
+                    s.playSound(d);
                     break;
                 // When released
                 case MotionEvent.ACTION_UP:
                     animate().alpha(1f).setDuration(500).start();
                     break;
             }
+            //s.destroy();
             return true;
         });
+        //s.destroy();
     }
 
     /**
@@ -144,5 +154,16 @@ public class DialpadButton extends ConstraintLayout {
 
         TextView message = findViewById(R.id.textMessage);
         message.setText(mess);
+    }
+
+
+    /**
+     * Gets the title from view
+     * */
+    public String getTitle(){
+
+        TextView title = findViewById(R.id.textTitle);
+        return title.getText().toString();
+
     }
 }
