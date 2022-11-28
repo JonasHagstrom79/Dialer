@@ -3,6 +3,7 @@ package se.miun.caha1906.dt031g.dialer;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.media.SoundPool;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -17,11 +18,12 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 public class DialpadButton extends ConstraintLayout {
 
     // To get the sound
-    SoundPlayer s = SoundPlayer.getInstance(getContext());
+//    SoundPlayer s = SoundPlayer.getInstance(getContext());
 
     private static final String UNDEFINED = "";
 
     DialpadButton d = this;//test
+
 
     /**
      * Default constructor for java code
@@ -100,7 +102,7 @@ public class DialpadButton extends ConstraintLayout {
                 // When pushed
                 case MotionEvent.ACTION_DOWN:
                     animate().alpha(0f).setDuration(500).start();
-                    s.playSound(d);
+//                    s.playSound(d);
                     break;
                 // When released
                 case MotionEvent.ACTION_UP:
