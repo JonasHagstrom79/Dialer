@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Dialer</string>
+    <string name="menu_question">Vad vill du göra?</string>
+    <string name="btn_dial">Ring</string>
+    <string name="btn_callList">Samtalslista</string>
+    <string name="btn_settings">Inställningar</string>
+    <string name="btn_map">Karta</string>
+    <string name="btn_about">Om</string>
+    <string name="textView_dial">Detta är aktiviteten för dial</string>
+    <string name="textView_CallList">Detta är aktiviteten för call list</string>
+    <string name="title_activity_settings">InställningarAktivitet</string>
+    <string name="messages_header">Meddelanden</string>
+    <string name="sync_header">Synkronisera</string>
+    <string name="signature_title">Din signatur</string>
+    <string name="reply_title">Standardsvarsåtgärd</string>
+    <string name="sync_title">Synkronisera e-post med jämna mellanrum</string>
+    <string name="attachment_title">Ladda ner inkommande bilagor</string>
+    <string name="attachment_summary_on">ladda ner bilagor för inkommande e-postmeddelanden automatiskt</string>
+    <string name="attachment_summary_off">Ladda bara ned bilagor när det begärs manuellt</string>
+    <string name="title_activity_maps">KartAktivitet</string>
+    <string name="textDialpadTitle">1</string>
+    <string name="textDialpadMessage">ABC</string>
+    <string name="textTitle">2</string>
+    <string name="textMessage">ASDF</string>
+    <string name="about_message">"Den här appen är tänkt att efterlikna knappsatsen\n" +
+                                "på en telefon. Den här appen kommer att bestå av \n" +
+                                "följaende:\n\n" +
+                                "* Ange nummer för att ringa\n" +
+                                "* Se tidigare slagna nummer\n" +
+                                "* Ändra knappinställningarna\n" +
+                                "* Visa på en karta varifrån tidigare samtal har ringts"</string>
+    <string name="title_about">Om</string>
+    <string name="btn_ok">OK</string>
+    <string name ="toast_ok">Selected Option: OK</string>
+    <string name ="toast_msg">Innehållet har redan visats</string>
+    <string name="Aboutvalue"></string>
+    <string name="Empty"></string>
+    <string name="ABC">ABC</string>
+    <string name="DEF">DEF</string>
+    <string name="GHI">GHI</string>
+    <string name="JKL">JKL</string>
+    <string name="MNO">MNO</string>
+    <string name="PQRS">PQRS</string>
+    <string name="TUV">TUV</string>
+    <string name="WXYZ">WXYZ</string>
+    <string name="PLUS">+</string>
+    <string name="Zero">0</string>
+    <string name="One">1</string>
+    <string name="Two">2</string>
+    <string name="Three">3</string>
+    <string name="Four">4</string>
+    <string name="Five">5</string>
+    <string name="Six">6</string>
+    <string name="Seven">7</string>
+    <string name="Eight">8</string>
+    <string name="Nine">9</string>
+    <string name="Star">*</string>
+    <string name="Pound">#</string>
+</resources>
