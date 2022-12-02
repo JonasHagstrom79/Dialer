@@ -21,33 +21,29 @@ public class SoundPlayer {
     public static SoundPlayer getInstance(Context context) {
 
         if(soundPlayer == null) {
+
             soundPlayer = new SoundPlayer();
 
-//            soundPool = new SoundPool.Builder() //TEst
-//                    // Config the soundpool
-//                    // Max sounds at once
-//                    .setMaxStreams(3)
-//                    .build();
         }
-//        soundPool = new SoundPool.Builder()
-//                // Config the soundpool
-//                // Max sounds at once
-//                .setMaxStreams(3)
-//                .build();
+        soundPool = new SoundPool.Builder()
+                // Config the soundpool
+                // Max sounds at once
+                .setMaxStreams(3)
+                .build();
 
         // Load the sounds into the array
-//        soundId[0] = soundPool.load(context, R.raw.zero, 1);
-//        soundId[1] = soundPool.load(context, R.raw.one, 1);
-//        soundId[2] = soundPool.load(context, R.raw.two, 1);
-//        soundId[3] = soundPool.load(context, R.raw.three, 1);
-//        soundId[4] = soundPool.load(context, R.raw.four, 1);
-//        soundId[5] = soundPool.load(context, R.raw.five, 1);
-//        soundId[6] = soundPool.load(context, R.raw.six, 1);
-//        soundId[7] = soundPool.load(context, R.raw.seven, 1);
-//        soundId[8] = soundPool.load(context, R.raw.eight, 1);
-//        soundId[9] = soundPool.load(context, R.raw.nine, 1);
-//        soundId[10] = soundPool.load(context, R.raw.pound, 1);
-//        soundId[11] = soundPool.load(context, R.raw.star, 1);
+        soundId[0] = soundPool.load(context, R.raw.zero, 1);
+        soundId[1] = soundPool.load(context, R.raw.one, 1);
+        soundId[2] = soundPool.load(context, R.raw.two, 1);
+        soundId[3] = soundPool.load(context, R.raw.three, 1);
+        soundId[4] = soundPool.load(context, R.raw.four, 1);
+        soundId[5] = soundPool.load(context, R.raw.five, 1);
+        soundId[6] = soundPool.load(context, R.raw.six, 1);
+        soundId[7] = soundPool.load(context, R.raw.seven, 1);
+        soundId[8] = soundPool.load(context, R.raw.eight, 1);
+        soundId[9] = soundPool.load(context, R.raw.nine, 1);
+        soundId[10] = soundPool.load(context, R.raw.pound, 1);
+        soundId[11] = soundPool.load(context, R.raw.star, 1);
 
         return soundPlayer;
     }
@@ -90,10 +86,10 @@ public class SoundPlayer {
             case "9":
                 soundPool.play(soundId[9], 1f, 1f, 1,0,1f);
                 break;
-            case "*":
+            case "#":
                 soundPool.play(soundId[10], 1f, 1f, 1,0,1f);
                 break;
-            case "#":
+            case "*":
                 soundPool.play(soundId[11], 1f, 1f, 1,0,1f);
                 break;
 

@@ -12,7 +12,9 @@ public class DialActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dial);
+        //setContentView(R.layout.activity_dial);
+        setContentView(R.layout.dialpad);//test ger dailpad där den ska vara
+
     }
 
     // Free resources from SoundPlayer as it stops

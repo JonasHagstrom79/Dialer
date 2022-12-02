@@ -35,6 +35,17 @@
     <string name ="toast_ok">Selected Option: OK</string>
     <string name ="toast_msg">Innehållet har redan visats</string>
     <string name="Aboutvalue"></string>
+    <string name="Empty"></string>
+    <string name="ABC">ABC</string>
+    <string name="DEF">DEF</string>
+    <string name="GHI">GHI</string>
+    <string name="JKL">JKL</string>
+    <string name="MNO">MNO</string>
+    <string name="PQRS">PQRS</string>
+    <string name="TUV">TUV</string>
+    <string name="WXYZ">WXYZ</string>
+    <string name="PLUS">+</string>
+    <string name="Zero">0</string>
     <string name="One">1</string>
     <string name="Two">2</string>
     <string name="Three">3</string>
