@@ -9,7 +9,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
@@ -31,20 +34,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //File from = new File() //Fungerqr ej
-        File newFile = new File(this.getFilesDir(), "text.txt");
-        File u = Util.getDirForDefaultVoice(this); ///data/user/0/se.miun.caha1906.dt031g.dialer/files/voices/mamacita_us
-        File x = Util.getInternalStorageDir(this); ///data/user/0/se.miun.caha1906.dt031g.dialer/files
-        this.deleteFile("NewTextFile.txt");
-        //TESTAR, alla filer kom in när jag använde den här metoden??
-        writeFileOnInternalStorage(this,"rolig.txt","Snart är det jul");
-        File file = new File(u, "text.txt"); ///data/user/0/se.miun.caha1906.dt031g.dialer/files/text.txt
-
+        // Copies soundfiles to internal storage
         Util.copyDefaultVoiceToInternalStorage(this);
 
-
-
-        Log.d("Mainactivity","L25 onCreate"); //TODO: Remove!
+        if (Util.defaultVoiceExist(this)) {
+            Log.d("Mainactivity","If statement");
+        }
 
         Button button = findViewById(R.id.button);
         button.setOnClickListener(view -> {

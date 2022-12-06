@@ -6,6 +6,11 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class SoundPlayer {
 
 
@@ -13,6 +18,10 @@ public class SoundPlayer {
     private static SoundPlayer soundPlayer = null;
 
     private static SoundPool soundPool;
+
+    private static File file;
+
+
 
     // Array for storing sounds to play
     private static final int[] soundId = new int[12];
@@ -31,19 +40,23 @@ public class SoundPlayer {
                 .setMaxStreams(3)
                 .build();
 
+
+        // Get the sounds from internal storage
+        File path = Util.getDirForDefaultVoice(context);
+
         // Load the sounds into the array
-        soundId[0] = soundPool.load(context, R.raw.zero, 1);
-        soundId[1] = soundPool.load(context, R.raw.one, 1);
-        soundId[2] = soundPool.load(context, R.raw.two, 1);
-        soundId[3] = soundPool.load(context, R.raw.three, 1);
-        soundId[4] = soundPool.load(context, R.raw.four, 1);
-        soundId[5] = soundPool.load(context, R.raw.five, 1);
-        soundId[6] = soundPool.load(context, R.raw.six, 1);
-        soundId[7] = soundPool.load(context, R.raw.seven, 1);
-        soundId[8] = soundPool.load(context, R.raw.eight, 1);
-        soundId[9] = soundPool.load(context, R.raw.nine, 1);
-        soundId[10] = soundPool.load(context, R.raw.pound, 1);
-        soundId[11] = soundPool.load(context, R.raw.star, 1);
+        soundId[0] = soundPool.load(path + "/zero."+Util.DEFAULT_VOICE_EXTENSION,1);
+        soundId[1] = soundPool.load(path + "/one."+Util.DEFAULT_VOICE_EXTENSION, 1);
+        soundId[2] = soundPool.load(path + "/two."+Util.DEFAULT_VOICE_EXTENSION, 1);
+        soundId[3] = soundPool.load(path + "/three."+Util.DEFAULT_VOICE_EXTENSION, 1);
+        soundId[4] = soundPool.load(path + "/four."+Util.DEFAULT_VOICE_EXTENSION, 1);
+        soundId[5] = soundPool.load(path + "/five."+Util.DEFAULT_VOICE_EXTENSION, 1);
+        soundId[6] = soundPool.load(path + "/six."+Util.DEFAULT_VOICE_EXTENSION, 1);
+        soundId[7] = soundPool.load(path + "/seven."+Util.DEFAULT_VOICE_EXTENSION, 1);
+        soundId[8] = soundPool.load(path + "/eight."+Util.DEFAULT_VOICE_EXTENSION, 1);
+        soundId[9] = soundPool.load(path + "/nine."+Util.DEFAULT_VOICE_EXTENSION, 1);
+        soundId[10] = soundPool.load(path + "/pound."+Util.DEFAULT_VOICE_EXTENSION, 1);
+        soundId[11] = soundPool.load(path + "/star."+Util.DEFAULT_VOICE_EXTENSION, 1);
 
         return soundPlayer;
     }
@@ -51,7 +64,7 @@ public class SoundPlayer {
     /**
      * Plays the sound of the DialpadButton
      */
-    public void playSound(DialpadButton d) { //Remove void
+    public void playSound(DialpadButton d) {
 
         // Use title to play sound in res/raw
         switch (d.getTitle()) {

@@ -9,8 +9,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Locale;
 import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -209,6 +212,167 @@ public class Util {
      */
     public static boolean defaultVoiceExist(Context context) {
 		// TODO: Add check if default voice dir already exist in the internal app storage
+
+//        File dir = getDirForDefaultVoice(context);
+//        String zero = "zero."+Util.DEFAULT_VOICE_EXTENSION;
+//        File file = new File(dir, zero);
+//        if (file.exists()){
+//            return true;
+//        }
+//        return false;
+
+        // Compare with loop not working
+        File dir = getDirForDefaultVoice(context);
+        String zero = "zero."+Util.DEFAULT_VOICE_EXTENSION;
+        String one = "one."+Util.DEFAULT_VOICE_EXTENSION;
+        String two = "two."+Util.DEFAULT_VOICE_EXTENSION;
+        String three = "three."+Util.DEFAULT_VOICE_EXTENSION;
+        String four = "four."+Util.DEFAULT_VOICE_EXTENSION;
+        String five = "five."+Util.DEFAULT_VOICE_EXTENSION;
+        String six = "six."+Util.DEFAULT_VOICE_EXTENSION;
+        String seven = "seven."+Util.DEFAULT_VOICE_EXTENSION;
+        String eight = "eight."+Util.DEFAULT_VOICE_EXTENSION;
+        String nine = "nine."+Util.DEFAULT_VOICE_EXTENSION;
+        String star = "star."+Util.DEFAULT_VOICE_EXTENSION;
+        String pound = "pound."+Util.DEFAULT_VOICE_EXTENSION;
+        //File file = new File(dir, filename);
+
+        for (String name : dir.list()) {
+            if (name.equals(zero) || name.equals(one) || name.equals(two) || name.equals(three)
+                || name.equals(four) || name.equals(five) || name.equals(six) || name.equals(seven)
+                || name.equals(eight) || name.equals(nine) || name.equals(pound) || name.equals(star)){
+                return true;
+            }
+//            if (name.equals(zero)) {
+//                return true;
+//            }
+//            if (name.equals(one)) {
+//                return true;
+//            }
+//            if (name.equals(two)) {
+//                return true;
+//            }
+//            if (name.equals(three)) {
+//                return true;
+//            }
+//            if (name.equals(four)) {
+//                return true;
+//            }
+//            if (name.equals(five)) {
+//                return true;
+//            }
+//            if (name.equals(six)) {
+//                return true;
+//            }
+//            if (name.equals(seven)) {
+//                return true;
+//            }
+//            if (name.equals(eight)) {
+//                return true;
+//            }
+//            if (name.equals(nine)) {
+//                return true;
+//            }
+//            if (name.equals(star)) {
+//                return true;
+//            }
+//            if (name.equals(pound)) {
+//                return true;
+//            }
+
+        }
+
         return false;
+
+
+
+        //For each name
+//        for (String name : DEFAULT_VOICE_FILE_NAMES.values())
+//            if (name == "zero.mp3"){
+//                return true;
+//            }
+            //Log.d("Utils","If statement SIZE"+name);
+
+
+    //return true;
+//        Iterator<Map.Entry<String,String>> itr = DEFAULT_VOICE_EXTENSION.iterator();
+//        while()
+//
+//        int A = DEFAULT_VOICE_EXTENSION.length();
+
+        //ArrayList<String> s = (ArrayList<String>) DEFAULT_VOICE_FILE_NAMES;
+//        //Map<String, String> s = DEFAULT_VOICE_FILE_NAMES;
+//        //String s = String.valueOf(DEFAULT_VOICE_FILE_NAMES);
+//        Map<String, String> s = DEFAULT_VOICE_FILE_NAMES;
+//
+//        String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
+//
+//        for (int i = 0; i < s.hashCode(); i++)  {
+//            Log.d("Utils","If statement SIZE" + s.get(i));
+//        }
+//
+//
+//        for(String i : cars) {
+//            Log.d("Utils","If statement" + i);
+//        }
+//        //s.forEach((n) -> n);
+
+
+
+
+
+//        // Get the sounds from internal storage //TODO:Känns fel :P
+//        File path = Util.getDirForDefaultVoice(context);
+//        File zero= new File(path + "/zero." + Util.DEFAULT_VOICE_EXTENSION);
+//        try {
+//            if (zero.exists()){
+//                return true;
+//            }
+//            else {
+//                return false;
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return false;
+
+
+//        File filepath = getDirForDefaultVoice(context);
+//        //File yourfile = new File(String.valueOf(filepath));
+//
+//        for (int i = 0; i<filepath.length(); i++) {
+//            if (filepath.exists())
+//                return true;
+//
+//        }
+//        return false;
+//        if (filepath.exists())
+//            return true;
+//        else
+//            return false;
+
+
+
+
+//        DEFAULT_VOICE.length();
+//        File v = getDirForVoice(context, DEFAULT_VOICE);
+//        for (int i =0; i<DEFAULT_VOICE_RESOURCE_IDS.length; i++) {
+//            if (DEFAULT_VOICE_RESOURCE_IDS[i] == 2131755018) {
+//                v.hashCode();
+//                return true;//2131755018
+//                //getDirForVoice
+//
+//            }
+////            if (getDirForVoice(context, DEFAULT_VOICE) == DEFAULT_VOICE_RESOURCE_IDS[i]) {
+////
+////            }
+//            Log.d("Mainactivity","If statement");
+//
+//        }
+//        if (DEFAULT_VOICE.equals(getDirForDefaultVoice(context))) {
+//            return true;
+//        }
+//        return false;
     }
+
 }

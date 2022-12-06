@@ -18,7 +18,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 public class DialpadButton extends ConstraintLayout {
 
     // To get the sound
-    SoundPlayer s = SoundPlayer.getInstance(getContext());
+    SoundPlayer s;
 
     private static final String UNDEFINED = "";
 
@@ -31,7 +31,6 @@ public class DialpadButton extends ConstraintLayout {
     public DialpadButton(@NonNull Context context) {
         super(context);
         init(null);
-        //if (!isInEditMode())
     }
 
     /**
@@ -59,6 +58,10 @@ public class DialpadButton extends ConstraintLayout {
     private void init(AttributeSet attrs) {
 
         inflate(getContext(), R.layout.view_dialpadbutton, this);
+
+        // Editmode for soundplayer
+        if (!isInEditMode())
+            s = SoundPlayer.getInstance(getContext());
 
         // Animates the view
         animateClick();
@@ -96,7 +99,7 @@ public class DialpadButton extends ConstraintLayout {
      */
     @SuppressLint("ClickableViewAccessibility")
     private void animateClick() {
-
+        //setOnLongClickListener(); //TODO:
         setOnTouchListener((view, motionEvent) -> {
             Log.i("tag", "animateClick och view: " +view);
             Log.i("tag", "animateClick och dialpadbutton: " +d);

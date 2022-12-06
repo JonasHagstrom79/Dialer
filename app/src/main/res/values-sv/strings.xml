@@ -57,4 +57,5 @@
     <string name="Nine">9</string>
     <string name="Star">*</string>
     <string name="Pound">#</string>
+    <string name="pathZero">/zero.</string>
 </resources>
