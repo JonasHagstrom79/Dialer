@@ -58,4 +58,7 @@
     <string name="Star">*</string>
     <string name="Pound">#</string>
     <string name="pathZero">/zero.</string>
+    <string name="numbersDialedTextView" />
+    <string name="btnDeleteText" />
+    <string name="btnCallText" />
 </resources>

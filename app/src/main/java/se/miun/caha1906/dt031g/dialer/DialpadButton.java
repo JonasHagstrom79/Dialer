@@ -52,6 +52,19 @@ public class DialpadButton extends ConstraintLayout {
         init(attrs);
     }
 
+
+    /**
+     * Customised listener for textbutton
+     */
+    public interface OnClickedListener {
+
+        // Callback method here!
+        public default void onClick(DialpadButton d) {
+            // Find buttons text
+            // Send text to new textview
+        }
+    };
+
     /**
      * Takes care of all initialization the component needs     *
      */

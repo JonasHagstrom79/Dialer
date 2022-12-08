@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -237,7 +238,8 @@ public class Util {
         String pound = "pound."+Util.DEFAULT_VOICE_EXTENSION;
         //File file = new File(dir, filename);
 
-        for (String name : dir.list()) {
+        for (String name : Objects.requireNonNull(dir.list())) {
+
             if (name.equals(zero) || name.equals(one) || name.equals(two) || name.equals(three)
                 || name.equals(four) || name.equals(five) || name.equals(six) || name.equals(seven)
                 || name.equals(eight) || name.equals(nine) || name.equals(pound) || name.equals(star)){
