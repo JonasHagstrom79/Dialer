@@ -7,6 +7,7 @@ import android.media.SoundPool;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -15,6 +16,8 @@ public class DialActivity extends AppCompatActivity {
     Intent intent = new Intent(Intent.ACTION_DIAL);
 
     public static final String ACTION_DIAL = "tel:#0101428138";
+
+    Dialpad d;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,13 +44,26 @@ public class DialActivity extends AppCompatActivity {
         });
 
         // Button for delete number
-        Button buttonDelete = findViewById(R.id.btnDelete);
-        // Set listener for click
-        buttonDelete.setOnClickListener(view -> {
-            TextView myText = (TextView) findViewById(R.id.textView_CallList);
-            myText.setText("Button clicked");
-        });
+        Button buttonDelete = (Button) findViewById(R.id.btnDelete);
 
+        // Set listener for click
+        buttonDelete.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        buttonDelete.setText("Click!"); //TODO:delete text from textView
+                    }
+                }
+        );
+        // Set listener for long-click
+        buttonDelete.setOnLongClickListener(
+                new View.OnLongClickListener() {
+                    public boolean onLongClick(View v)
+                    {
+                        buttonDelete.setText("LOOOOOONG Click!");//TODO:delete text from textView
+                        return true;
+                    }
+                }
+        );
 
     }
 

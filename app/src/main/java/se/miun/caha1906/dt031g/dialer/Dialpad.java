@@ -28,6 +28,9 @@ public class Dialpad extends ConstraintLayout {
 
     // Use the layout in class if needed
     private void init(Context context) {
+
         inflate(context, R.layout.dialpad, this);
+
+
     }
 }

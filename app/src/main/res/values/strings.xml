@@ -65,7 +65,7 @@
     <string name="textDialpadMessage">ABC</string>
     <string name="textTitle">212</string>
     <string name="textMessage">ASDFf</string>
-    <string name="numbersDialedTextView" />
+    <string name="numbersDialedTextView">0</string>
     <string name="btnDeleteText" />
     <string name="btnCallText" />
 </resources>
