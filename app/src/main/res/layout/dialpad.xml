@@ -198,20 +198,25 @@
 
     <TextView
         android:id="@+id/numbersDialedTextView"
-        android:layout_width="410dp"
-        android:layout_height="144dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@color/green"
+        android:gravity="center"
         android:text="@string/numbersDialedTextView"
+        android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent=".20"
+        app:layout_constraintWidth_percent="1"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnDelete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent=".08"
+        app:layout_constraintWidth_percent=".15"
         android:layout_marginTop="4dp"
         android:background="@drawable/ic_baseline_backspace_24"
         android:text="@string/btnDeleteText"
@@ -219,22 +224,26 @@
         app:backgroundTint="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/btnCall"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintHorizontal_bias="0.953"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/numbersDialedTextView"
 
-        app:layout_constraintVertical_bias="0.781" />
+        app:layout_constraintVertical_bias="0.375" />
 
     <Button
         android:id="@+id/btnCall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
-        android:text="@string/btnCallText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="68dp"
         android:background="@drawable/ic_baseline_phone_24"
+        android:text="@string/btnCallText"
         app:backgroundTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintHeight_percent=".08"
+        app:layout_constraintHorizontal_bias="0.954"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent=".15" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
