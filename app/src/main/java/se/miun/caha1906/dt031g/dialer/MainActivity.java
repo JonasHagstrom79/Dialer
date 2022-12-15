@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
     SoundPlayer s;
 
+    Button button, button2, button3, button4, button5;
+
     String defaultVoice = Util.DEFAULT_VOICE; //Nytt
 
     @Override
@@ -34,60 +36,45 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Copies soundfiles to internal storage
-        Util.copyDefaultVoiceToInternalStorage(this);
+        // Get the views
+        findViews();
 
-        if (Util.defaultVoiceExist(this)) {
-            Log.d("Mainactivity","If statement");
+
+        // Copies soundfiles to internal storage if the doesnt exist
+        if (!Util.defaultVoiceExist(this)) {
+            Util.copyDefaultVoiceToInternalStorage(this);
         }
 
-        Button button = findViewById(R.id.button);
         button.setOnClickListener(view -> {
             startActivity(new Intent(MainActivity.this, DialActivity.class));
         });
 
-        Button button2 = findViewById(R.id.button2);
         button2.setOnClickListener(view -> {
             //s.testXX(); // not working
             startActivity(new Intent(MainActivity.this, CallListActivity.class));
         });
 
-        Button button3 = findViewById(R.id.button3);
         button3.setOnClickListener(view -> {
             startActivity(new Intent(MainActivity.this, SettingsActivity.class));
         });
 
-        Button button4 = findViewById(R.id.button4);
         button4.setOnClickListener(view -> {
             startActivity(new Intent(MainActivity.this, MapsActivity.class));
         });
 
-        Button button5 = findViewById(R.id.button5);
         button5.setOnClickListener(view -> {
+
             // If about have not been clicked
             if (!about) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle(R.string.title_about)
-                        .setMessage(R.string.about_message)
-                        .setCancelable(false)
-                        .setPositiveButton(R.string.btn_ok, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                Toast.makeText(MainActivity.this, R.string.toast_ok, Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                AlertDialog dialog = builder.create();
-                dialog.show();
-                // Set the value to "clicked" or true
+
+                aboutMessage();
                 about = true;
-                Log.d("Mainactivity", "L62 onButton5: about.value = " + about); //TODO: Remove!
+
             // If about have been clicked
             } else {
-                Context context = getApplicationContext();
-                int duration = Toast.LENGTH_SHORT;
 
-                Toast toast = Toast.makeText(context, R.string.toast_msg, duration);
-                toast.show();
+                aboutMessageAlreadyDisplayed();
+
             }
 
         });
@@ -97,11 +84,54 @@ public class MainActivity extends AppCompatActivity {
             boolean value = savedInstanceState.getBoolean(KEY_ABOUT_VALUE);
             // Resets the value
             about = value;
-            Log.d("MainActivity","L66 onCreate: about.value = " + about); //TODO: Remove!
+
         }
 
     }
 
+    /**
+     * Get the views
+     * */
+    private void findViews() {
+
+        button = findViewById(R.id.button);
+        button2 = findViewById(R.id.button2);
+        button3 = findViewById(R.id.button3);
+        button4 = findViewById(R.id.button4);
+        button5 = findViewById(R.id.button5);
+
+    }
+
+    /**
+     * Display that about-message already been viewed
+     * */
+    private void aboutMessageAlreadyDisplayed() {
+
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, R.string.toast_msg, duration);
+        toast.show();
+    }
+
+    /**
+     * Dispalys toast-message for about button
+     * */
+    private void aboutMessage() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle(R.string.title_about)
+                .setMessage(R.string.about_message)
+                .setCancelable(false)
+                .setPositiveButton(R.string.btn_ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(MainActivity.this, R.string.toast_ok, Toast.LENGTH_SHORT).show();
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {

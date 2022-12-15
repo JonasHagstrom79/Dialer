@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,10 +21,21 @@ public class DialpadButton extends ConstraintLayout {
     // To get the sound
     SoundPlayer s;
 
+    // The custom listener
+    //private OnClickedListener listener;
+    private DialpadClickListener listener;
+
     private static final String UNDEFINED = "";
 
     // The button that is to be pressed
     DialpadButton d = this;
+
+    /**
+     * Customised listener interface for dialpadbutton
+     */
+    public interface DialpadClickListener {
+        void onClick(DialpadButton d);
+    }
 
     /**
      * Default constructor for java code
@@ -51,19 +63,6 @@ public class DialpadButton extends ConstraintLayout {
         super(context, attrs);
         init(attrs);
     }
-
-
-    /**
-     * Customised listener for textbutton
-     */
-    public interface OnClickedListener {
-
-        // Callback method here!
-        public default void onClick(DialpadButton d) {
-            // Find buttons text
-            // Send text to new textview
-        }
-    };
 
     /**
      * Takes care of all initialization the component needs     *
@@ -108,17 +107,27 @@ public class DialpadButton extends ConstraintLayout {
     }
 
     /**
+     * Custom listener
+     */
+    public void setDialpadClickListener(DialpadClickListener listener) {
+        this.listener = listener;
+    }
+
+    /**
      * Animates the click on the component
      */
     @SuppressLint("ClickableViewAccessibility")
     private void animateClick() {
         //setOnLongClickListener(); //TODO:
-        setOnTouchListener((view, motionEvent) -> {
-            Log.i("tag", "animateClick och view: " +view);
-            Log.i("tag", "animateClick och dialpadbutton: " +d);
+
+         setOnTouchListener((view, motionEvent) -> {
             switch (motionEvent.getAction()) {
                 // When pushed
                 case MotionEvent.ACTION_DOWN:
+                    // Initiate custom listener from
+                    if (this.listener != null) {
+                        listener.onClick(this);
+                    }
                     animate().alpha(0f).setDuration(500).start();
                     s.playSound(d);
                     break;

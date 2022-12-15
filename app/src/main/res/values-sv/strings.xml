@@ -58,7 +58,9 @@
     <string name="Star">*</string>
     <string name="Pound">#</string>
     <string name="pathZero">/zero.</string>
-    <string name="numbersDialedTextView" />
+    <string name="numbersDialedTextView">01234</string>
     <string name="btnDeleteText" />
     <string name="btnCallText" />
+    <string name="numbers_dialedText">012345</string>
+    <string name="dialedNumbers">012345</string>
 </resources>
