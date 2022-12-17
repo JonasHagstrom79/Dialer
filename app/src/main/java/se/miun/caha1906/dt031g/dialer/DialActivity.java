@@ -20,87 +20,110 @@ public class DialActivity extends AppCompatActivity {
     // Phone number to be called
     public static final String ACTION_DIAL = "tel:#0101428138";
 
-    // Initiate object
-    DialpadButton dialpadButton;
+    // Initiate views
+    DialpadButton buttonOne, buttonTwo, buttonThree, buttonFour, buttonFive, buttonSix,
+            buttonSeven, buttonEight, buttonNine, buttonZero, buttonStar, buttonPound, x;
+    TextView numberDisplay;
 
     Dialpad d; //TODO: remove?
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_dial); //TODO: remove?
         setContentView(R.layout.dialpad);//test ger dailpad där den ska vara //TODO: remove comment!
 
+        //Get the views
+        findViews();
 
-        DialpadButton test = findViewById(R.id.DialpadButtonOne);
-        // Set up listener
-        test.setDialpadClickListener(new DialpadButton.DialpadClickListener() {
+//        onCreateOptionsMenu(){ //TODO:här!!
+//            inflate(this, R.layout.dial_menu, this);
+//        }
+
+        // Set up listener on buttons
+        buttonOne.setDialpadClickListener(new DialpadButton.DialpadClickListener() {
             @Override
             public void onClick(DialpadButton dialpadButton) {
-                Log.d("MyApp","I am here from dialactivity");
-                String a = dialpadButton.getTitle();
-                TextView mess = findViewById(R.id.numbersDialedTextView);
-                String res = mess+a;
-                // Displays the new string
-                mess.setText(res);
-                Log.d("MyApp","I am here from dialactivity");
+                updateNumberDisplay(dialpadButton);
             }
         });
-//        test.setOnClickListener(new DialpadButton.OnClickedListener() {
-//            @Override
-//            public void onClick(DialpadButton d) {
-//                Log.d("MyApp","I am here from dialactivity");
-//            }
-//        });
 
-//        test.OnClickListener(new DialpadButton.OnClickedListener() {
-//            @Override
-//            public void onClick(DialpadButton d) {
-//                Log.d("MyApp","I am here from dialactivity");
-//            }
-//        });
-        // Create dialpadbutton
-        //dialpadButton = new DialpadButton(this  );
+        buttonTwo.setDialpadClickListener(new DialpadButton.DialpadClickListener() {
+            @Override
+            public void onClick(DialpadButton dialpadButton) {
+                updateNumberDisplay(dialpadButton);
+            }
+        });
 
-//        dialpadButton.setOnClickListener(new DialpadButton.OnClickedListener() {
-//            @Override
-//            public void onClick(DialpadButton dialpadButton) {
-//                Log.d("MyApp","I am here from dialactivity");
-//            }
-//
-//        });
-//        dialpadButton.OnClickListener(new DialpadButton.OnClickedListener() {
-//            @Override
-//            public void onClick(DialpadButton d) {
-//
-//                String a = dialpadButton.getTitle();
-//                TextView mess = findViewById(R.id.numbersDialedTextView);
-//                String res = mess+a;
-//                // Displays the new string
-//                mess.setText(res);
-//                Log.d("MyApp","I am here from dialactivity");
-//
-//            }
-//        });
+        buttonThree.setDialpadClickListener(new DialpadButton.DialpadClickListener() {
+            @Override
+            public void onClick(DialpadButton dialpadButton) {
+                updateNumberDisplay(dialpadButton);
+            }
+        });
 
-//        dialpadButton.OnClickListener(new DialpadButton.OnClickedListener() {
-//            @Override
-//            public void onClick(DialpadButton dialpadButton) {
-//                Toast.makeText(DialActivity.this, "TESTAR", Toast.LENGTH_SHORT).show();
-//                Log.d("MyApp","I am here from dialactivity");
-//            }
-//        });
+        buttonFour.setDialpadClickListener(new DialpadButton.DialpadClickListener() {
+            @Override
+            public void onClick(DialpadButton dialpadButton) {
+                updateNumberDisplay(dialpadButton);
+            }
+        });
 
-//        dialpadButton.OnClickListener(new DialpadButton.OnClickedListener() {
-//            //Toast.makeText(DialActivity.this, "Short click", Toast.LENGTH_SHORT).show();
-//
-//            @Override
-//            public void onClick(DialpadButton dialpadButton) {
-//                DialpadButton.OnClickedListener.super.onClick(dialpadButton);
-//                Toast.makeText(DialActivity.this, "TESTAR", Toast.LENGTH_SHORT).show();
-//                Log.d("MyApp","I am here from dialactivity");
-//            }
-//        });
+        buttonFive.setDialpadClickListener(new DialpadButton.DialpadClickListener() {
+            @Override
+            public void onClick(DialpadButton dialpadButton) {
+                updateNumberDisplay(dialpadButton);
+            }
+        });
+
+        buttonSix.setDialpadClickListener(new DialpadButton.DialpadClickListener() {
+            @Override
+            public void onClick(DialpadButton dialpadButton) {
+                updateNumberDisplay(dialpadButton);
+            }
+        });
+
+        buttonSeven.setDialpadClickListener(new DialpadButton.DialpadClickListener() {
+            @Override
+            public void onClick(DialpadButton dialpadButton) {
+                updateNumberDisplay(dialpadButton);
+            }
+        });
+
+        buttonEight.setDialpadClickListener(new DialpadButton.DialpadClickListener() {
+            @Override
+            public void onClick(DialpadButton dialpadButton) {
+                updateNumberDisplay(dialpadButton);
+            }
+        });
+
+        buttonNine.setDialpadClickListener(new DialpadButton.DialpadClickListener() {
+            @Override
+            public void onClick(DialpadButton dialpadButton) {
+                updateNumberDisplay(dialpadButton);
+            }
+        });
+
+        buttonStar.setDialpadClickListener(new DialpadButton.DialpadClickListener() {
+            @Override
+            public void onClick(DialpadButton dialpadButton) {
+                updateNumberDisplay(dialpadButton);
+            }
+        });
+
+        buttonPound.setDialpadClickListener(new DialpadButton.DialpadClickListener() {
+            @Override
+            public void onClick(DialpadButton dialpadButton) {
+                updateNumberDisplay(dialpadButton);
+            }
+        });
+
+        buttonZero.setDialpadClickListener(new DialpadButton.DialpadClickListener() {
+            @Override
+            public void onClick(DialpadButton dialpadButton) {
+                updateNumberDisplay(dialpadButton);
+            }
+        });
+
 
         // Button for call
         Button buttonCall = findViewById(R.id.btnCall);
@@ -144,7 +167,7 @@ public class DialActivity extends AppCompatActivity {
                             // Displays an empty string
                             mess.setText("");
                         }
-//
+
                     }
                 }
         );
@@ -169,6 +192,44 @@ public class DialActivity extends AppCompatActivity {
         );
 
     }
+
+    /**
+     * Updates the numberdisplay every time a new digit is pushed
+     * */
+    private void updateNumberDisplay(DialpadButton dialpadButton) {
+
+        // Get number pushed
+        String numberPushed = dialpadButton.getTitle();
+        // Get numbers already pushed
+        String numbers = numberDisplay.getText().toString();
+        // Update the display string
+        String newNumbers = numbers+numberPushed;
+        // Displays the new string
+        numberDisplay.setText(newNumbers);
+    }
+
+    /**
+     * Get the views
+     * */
+    private void findViews() {
+
+        buttonOne = findViewById(R.id.DialpadButtonOne);
+        buttonTwo = findViewById(R.id.DialpadButtonTwo);
+        buttonThree = findViewById(R.id.DialpadButtonThree);
+        buttonFour = findViewById(R.id.DialpadButtonFour);
+        buttonFive = findViewById(R.id.DialpadButtonFive);
+        buttonSix = findViewById(R.id.DialpadButtonSix);
+        buttonSeven = findViewById(R.id.DialpadButtonSeven);
+        buttonEight = findViewById(R.id.DialpadButtonEight);
+        buttonNine = findViewById(R.id.DialpadButtonNine);
+        buttonStar = findViewById(R.id.DialpadButtonStar);
+        buttonPound = findViewById(R.id.DialpadButtonPound);
+        buttonZero = findViewById(R.id.DialpadButtonZero);
+
+        numberDisplay = findViewById(R.id.numbersDialedTextView);
+
+    }
+
 
     // Free resources from SoundPlayer as it stops
     @Override

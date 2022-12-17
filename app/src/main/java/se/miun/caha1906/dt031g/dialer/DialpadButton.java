@@ -139,6 +139,7 @@ public class DialpadButton extends ConstraintLayout {
             //s.destroy();
             return true;
         });
+
         //s.destroy();
     }
 
