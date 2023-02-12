@@ -134,7 +134,7 @@
         app:title="@string/Six" />
 
     <se.miun.caha1906.dt031g.dialer.DialpadButton
-        android:id="@+id/DialpadButtoSeven"
+        android:id="@+id/DialpadButtonSeven"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:autoSizeTextType="uniform"

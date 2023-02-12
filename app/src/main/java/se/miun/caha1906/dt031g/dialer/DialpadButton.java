@@ -27,8 +27,9 @@ public class DialpadButton extends ConstraintLayout {
 
     private static final String UNDEFINED = "";
 
-    // The button that is to be pressed
+    // The button that is to be pressed and allow sound to play
     DialpadButton d = this;
+
 
     /**
      * Customised listener interface for dialpadbutton
@@ -70,7 +71,7 @@ public class DialpadButton extends ConstraintLayout {
     private void init(AttributeSet attrs) {
 
         inflate(getContext(), R.layout.view_dialpadbutton, this);
-
+        Log.d("Dialpadbutton", "Testar listener efter initiering " +listener);
         // Editmode for soundplayer
         if (!isInEditMode())
             s = SoundPlayer.getInstance(getContext());
@@ -103,7 +104,7 @@ public class DialpadButton extends ConstraintLayout {
 
         // Call setSaveEnabled(true) to indicate that this view intends to save its state.
         setSaveEnabled(true);
-
+        Log.d("Dialpadbutton", "Testar listener sist i init " +listener);
     }
 
     /**
@@ -125,8 +126,10 @@ public class DialpadButton extends ConstraintLayout {
                 // When pushed
                 case MotionEvent.ACTION_DOWN:
                     // Initiate custom listener from
+                    Log.d("Dialpadbutton", "Testar listener innan if-sats " +listener);
                     if (this.listener != null) {
                         listener.onClick(this);
+                        Log.d("Dialpadbutton", "Testar listener i if-sats " +listener);
                     }
                     animate().alpha(0f).setDuration(500).start();
                     s.playSound(d);

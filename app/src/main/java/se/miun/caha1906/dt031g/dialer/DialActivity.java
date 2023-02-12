@@ -7,6 +7,8 @@ import android.media.SoundPool;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -22,22 +24,41 @@ public class DialActivity extends AppCompatActivity {
 
     // Initiate views
     DialpadButton buttonOne, buttonTwo, buttonThree, buttonFour, buttonFive, buttonSix,
-            buttonSeven, buttonEight, buttonNine, buttonZero, buttonStar, buttonPound, x;
+            buttonSeven, buttonEight, buttonNine, buttonZero, buttonStar, buttonPound,
+            buttonCall;
     TextView numberDisplay;
 
-    Dialpad d; //TODO: remove?
+    Dialpad d;
+
+    // Handle the menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.dial_menu, menu);
+        return true;
+    }
+
+    // Handle user interactions with the menu
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle menu item selection
+//        switch (item.getItemId()) {
+//            case R.id.menu_item_1:
+//                // Do something when menu item 1 is selected
+//                return true;
+//            case R.id.menu_item_2:
+//                // Do something when menu item 2 is selected
+//                return true;
+//            default:
+                return super.onOptionsItemSelected(item);
+        }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialpad);//test ger dailpad där den ska vara //TODO: remove comment!
+        setContentView(R.layout.dialpad);//test ger dailpad där den ska vara
 
         //Get the views
         findViews();
-
-//        onCreateOptionsMenu(){ //TODO:här!!
-//            inflate(this, R.layout.dial_menu, this);
-//        }
 
         // Set up listener on buttons
         buttonOne.setDialpadClickListener(new DialpadButton.DialpadClickListener() {
@@ -121,25 +142,26 @@ public class DialActivity extends AppCompatActivity {
             @Override
             public void onClick(DialpadButton dialpadButton) {
                 updateNumberDisplay(dialpadButton);
+
             }
         });
 
 
         // Button for call
         Button buttonCall = findViewById(R.id.btnCall);
-        TextView numberDisplay = findViewById(R.id.numbersDialedTextView); //Går med knappen men ej med textview på samma komponent??
+        //TextView numberDisplay = findViewById(R.id.numbersDialedTextView); //Går med knappen men ej med textview på samma komponent??
 
         // Set click listener
         buttonCall.setOnClickListener(view -> {
             // Adds phone number from text field to intent
-            intent.setData(Uri.parse(String.valueOf(R.id.textView_CallList))); //TODO:vad är textView_Calllist?
+            intent.setData(Uri.parse(String.valueOf(R.id.textView_CallList)));
 
             // Handle #
-            android.net.Uri.encode(ACTION_DIAL); //TODO: Does not handle #
-            Log.d("Onclicklistener", "ACTION_DIAL " +ACTION_DIAL); //TODO: REMOVE!
-            intent.setData(Uri.parse(ACTION_DIAL)); // Hardcoded for test //TODO: REMOVE!
+            android.net.Uri.encode(ACTION_DIAL);
 
-            Log.d("Onclicklistener", "buttonCall " +intent); //TODO: REMOVE!
+            intent.setData(Uri.parse(ACTION_DIAL)); // Hardcoded
+
+
             // Starts the activity
             startActivity(intent);
 
@@ -152,7 +174,7 @@ public class DialActivity extends AppCompatActivity {
         buttonDelete.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        Toast.makeText(DialActivity.this, "Short click", Toast.LENGTH_SHORT).show(); //TODO:delete text from textView
+                        Toast.makeText(DialActivity.this, "Short click", Toast.LENGTH_SHORT).show();
                         // Gets the text value
                         TextView mess = findViewById(R.id.numbersDialedTextView);
                         // Transform to string
@@ -176,8 +198,8 @@ public class DialActivity extends AppCompatActivity {
                 new View.OnLongClickListener() {
                     public boolean onLongClick(View v)
                     {
-                        buttonDelete.setText("LOOOOOONG Click!");//TODO:delete text from textView
-                        Toast.makeText(DialActivity.this, "Long click", Toast.LENGTH_SHORT).show(); //TODO:delete text from textView
+                        buttonDelete.setText("LOOOOOONG Click!");
+                        Toast.makeText(DialActivity.this, "Long click", Toast.LENGTH_SHORT).show();
                         // Gets the text value
                         TextView mess = findViewById(R.id.numbersDialedTextView);
                         // Transform to string
@@ -225,6 +247,8 @@ public class DialActivity extends AppCompatActivity {
         buttonStar = findViewById(R.id.DialpadButtonStar);
         buttonPound = findViewById(R.id.DialpadButtonPound);
         buttonZero = findViewById(R.id.DialpadButtonZero);
+
+        //buttonCall = findViewById(R.id.btnCall);
 
         numberDisplay = findViewById(R.id.numbersDialedTextView);
 

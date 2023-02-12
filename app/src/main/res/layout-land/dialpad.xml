@@ -100,7 +100,7 @@
     </se.miun.caha1906.dt031g.dialer.DialpadButton>
 
     <se.miun.caha1906.dt031g.dialer.DialpadButton
-        android:id="@+id/DialpadButtoSeven"
+        android:id="@+id/DialpadButtonSeven"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
