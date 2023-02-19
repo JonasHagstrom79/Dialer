@@ -24,9 +24,11 @@ public class DialActivity extends AppCompatActivity {
 
     // Initiate views
     DialpadButton buttonOne, buttonTwo, buttonThree, buttonFour, buttonFive, buttonSix,
-            buttonSeven, buttonEight, buttonNine, buttonZero, buttonStar, buttonPound,
-            buttonCall;
+            buttonSeven, buttonEight, buttonNine, buttonZero, buttonStar, buttonPound;//,
+            //buttonCall;
     TextView numberDisplay;
+
+    Button buttonCall;
 
     Dialpad d;
 
@@ -140,30 +142,27 @@ public class DialActivity extends AppCompatActivity {
 
         buttonZero.setDialpadClickListener(new DialpadButton.DialpadClickListener() {
             @Override
-            public void onClick(DialpadButton dialpadButton) {
-                updateNumberDisplay(dialpadButton);
-
-            }
+            public void onClick(DialpadButton dialpadButton) { updateNumberDisplay(dialpadButton); }
         });
 
 
-        // Button for call
-        Button buttonCall = findViewById(R.id.btnCall);
-        //TextView numberDisplay = findViewById(R.id.numbersDialedTextView); //Går med knappen men ej med textview på samma komponent??
-
         // Set click listener
         buttonCall.setOnClickListener(view -> {
-            // Adds phone number from text field to intent
-            intent.setData(Uri.parse(String.valueOf(R.id.textView_CallList)));
 
-            // Handle #
-            android.net.Uri.encode(ACTION_DIAL);
+            // Get the phone number from the display text
+            String phoneNumber = numberDisplay.getText().toString();
 
-            intent.setData(Uri.parse(ACTION_DIAL)); // Hardcoded
+            // Encodes the phone number to get #
+            String encodedPhoneNumber = Uri.encode(phoneNumber);
 
+            // Create a Uri with the phone number to be used in the Intent
+            Uri phoneUri = Uri.parse("tel:" + encodedPhoneNumber);
 
-            // Starts the activity
-            startActivity(intent);
+            // Create a new Intent with the ACTION_DIAL action and the Uri with the phone number
+            Intent callIntent = new Intent(Intent.ACTION_DIAL, phoneUri);
+
+            // Start the Intent, which will open the device's phone app with the phone number pre-filled
+            startActivity(callIntent);
 
         });
 
@@ -235,6 +234,7 @@ public class DialActivity extends AppCompatActivity {
      * */
     private void findViews() {
 
+        // Dial buttons
         buttonOne = findViewById(R.id.DialpadButtonOne);
         buttonTwo = findViewById(R.id.DialpadButtonTwo);
         buttonThree = findViewById(R.id.DialpadButtonThree);
@@ -248,8 +248,10 @@ public class DialActivity extends AppCompatActivity {
         buttonPound = findViewById(R.id.DialpadButtonPound);
         buttonZero = findViewById(R.id.DialpadButtonZero);
 
-        //buttonCall = findViewById(R.id.btnCall);
+        // Regular buttons
+        buttonCall = findViewById(R.id.btnCall);
 
+        // Textview
         numberDisplay = findViewById(R.id.numbersDialedTextView);
 
     }
