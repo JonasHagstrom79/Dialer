@@ -51,8 +51,21 @@ public class DialActivity extends AppCompatActivity {
 //                // Do something when menu item 2 is selected
 //                return true;
 //            default:
-                return super.onOptionsItemSelected(item);
+
+        int id = item.getItemId();
+
+        if(id == R.id.menu_settings) {
+
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+            return true;
+
         }
+
+
+        return super.onOptionsItemSelected(item);
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,6 +173,17 @@ public class DialActivity extends AppCompatActivity {
 
             // Create a new Intent with the ACTION_DIAL action and the Uri with the phone number
             Intent callIntent = new Intent(Intent.ACTION_DIAL, phoneUri);
+
+//            if (callIntent.resolveActivity(getPackageManager()) != null) {
+//
+//                // Start the Intent, which will open the device's phone app with the phone number pre-filled
+//                startActivity(callIntent);
+//
+//            } else {
+//                // Handle the case where there is no activity that can handle the intent
+//                Toast.makeText(this, "No phone app found", Toast.LENGTH_SHORT).show();
+//
+//            }
 
             // Start the Intent, which will open the device's phone app with the phone number pre-filled
             startActivity(callIntent);

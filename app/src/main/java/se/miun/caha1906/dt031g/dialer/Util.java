@@ -2,6 +2,8 @@ package se.miun.caha1906.dt031g.dialer;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -222,29 +224,90 @@ public class Util {
 //        }
 //        return false;
 
-        // Compare with loop not working
-        File dir = getDirForDefaultVoice(context);
-        String zero = "zero."+Util.DEFAULT_VOICE_EXTENSION;
-        String one = "one."+Util.DEFAULT_VOICE_EXTENSION;
-        String two = "two."+Util.DEFAULT_VOICE_EXTENSION;
-        String three = "three."+Util.DEFAULT_VOICE_EXTENSION;
-        String four = "four."+Util.DEFAULT_VOICE_EXTENSION;
-        String five = "five."+Util.DEFAULT_VOICE_EXTENSION;
-        String six = "six."+Util.DEFAULT_VOICE_EXTENSION;
-        String seven = "seven."+Util.DEFAULT_VOICE_EXTENSION;
-        String eight = "eight."+Util.DEFAULT_VOICE_EXTENSION;
-        String nine = "nine."+Util.DEFAULT_VOICE_EXTENSION;
-        String star = "star."+Util.DEFAULT_VOICE_EXTENSION;
-        String pound = "pound."+Util.DEFAULT_VOICE_EXTENSION;
-        //File file = new File(dir, filename);
+        //NY TEST 3
 
-        for (String name : Objects.requireNonNull(dir.list())) {
+        // Get the directory of the default voice
+        File defaultVoiceDir = getDirForDefaultVoice(context);
 
-            if (name.equals(zero) || name.equals(one) || name.equals(two) || name.equals(three)
-                || name.equals(four) || name.equals(five) || name.equals(six) || name.equals(seven)
-                || name.equals(eight) || name.equals(nine) || name.equals(pound) || name.equals(star)){
-                return true;
+        // Iterate over the file names in DEFAULT_VOICE_FILE_NAMES
+        for (String filename : DEFAULT_VOICE_FILE_NAMES.values()) {
+            // Construct the file path
+            File file = new File(defaultVoiceDir, filename);
+
+            // Check if the file exists
+            if (!file.exists()) {
+                // Handle the case where the file does not exist
+                // For example, you can show a message to the user
+                Toast.makeText(context, filename + " does not exist", Toast.LENGTH_SHORT).show();
+
+                // Exit the loop and return false
+                return false;
             }
+        }
+
+        // If all files exist, return true
+        Toast.makeText(context, "all files exist", Toast.LENGTH_SHORT).show();
+        return true;
+
+        //NY TEST2
+        // Get the default voice directory
+//        File dir = getDirForDefaultVoice(context);
+//
+//        // Loop through the default voice file names
+//        for (String fileName : DEFAULT_VOICE_FILE_NAMES.values()) {
+//            // Get the file path for the current file name
+//            String filePath = dir.getAbsolutePath() + File.separator + fileName;
+//
+//            // Check if the file exists, return false if not
+//            if (new File(filePath).exists()) {
+//                Toast.makeText(context, fileName + " does not exist", Toast.LENGTH_SHORT).show();
+//                return false;
+//            }
+//        }
+//
+//        // All files exist, return true
+//        return true;
+
+
+//        //NY TEST Kontrollerar varje fil, den aktuella kontrollerar bara första filen
+//        // Loop over each filename in the DEFAULT_VOICE_FILE_NAMES map
+//        for (String filename : DEFAULT_VOICE_FILE_NAMES.values()) {
+//
+//            // Create a new File object with the current filename and directory path
+//            File file = new File(getDirForDefaultVoice(context), filename);
+//
+//            // Check if the file exists
+//            if (!file.exists()) {
+//                Toast.makeText(context, filename + " does not exist", Toast.LENGTH_SHORT).show();
+//                return false;
+//            }
+//        }
+//        return true;
+//        // Compare with loop not working
+//        File dir = getDirForDefaultVoice(context);
+//        String zero = "zero."+Util.DEFAULT_VOICE_EXTENSION;
+//        String one = "one."+Util.DEFAULT_VOICE_EXTENSION;
+//        String two = "two."+Util.DEFAULT_VOICE_EXTENSION;
+//        String three = "three."+Util.DEFAULT_VOICE_EXTENSION;
+//        String four = "four."+Util.DEFAULT_VOICE_EXTENSION;
+//        String five = "five."+Util.DEFAULT_VOICE_EXTENSION;
+//        String six = "six."+Util.DEFAULT_VOICE_EXTENSION;
+//        String seven = "seven."+Util.DEFAULT_VOICE_EXTENSION;
+//        String eight = "eight."+Util.DEFAULT_VOICE_EXTENSION;
+//        String nine = "nine."+Util.DEFAULT_VOICE_EXTENSION;
+//        String star = "star."+Util.DEFAULT_VOICE_EXTENSION;
+//        String pound = "pound."+Util.DEFAULT_VOICE_EXTENSION;
+//        //File file = new File(dir, filename);
+//
+//        for (String name : Objects.requireNonNull(dir.list())) {
+//
+//            if (name.equals(zero) || name.equals(one) || name.equals(two) || name.equals(three)
+//                || name.equals(four) || name.equals(five) || name.equals(six) || name.equals(seven)
+//                || name.equals(eight) || name.equals(nine) || name.equals(pound) || name.equals(star)){
+//                return true;
+//            }
+//
+            /////////////////////////////////////////////////////
 //            if (name.equals(zero)) {
 //                return true;
 //            }
@@ -282,12 +345,12 @@ public class Util {
 //                return true;
 //            }
 
-        }
+        //}
+///////////////////////////////////////////////////////////////////////////
+        //return false;
 
-        return false;
 
-
-
+/////////////////////////////////////////////////////////////////////////////
         //For each name
 //        for (String name : DEFAULT_VOICE_FILE_NAMES.values())
 //            if (name == "zero.mp3"){

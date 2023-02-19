@@ -67,5 +67,6 @@
     <string name="numbersDialedTextView"></string>
     <string name="btnDeleteText" />
     <string name="btnCallText" />
+    <string name="settings">Settings</string>
 
 </resources>
