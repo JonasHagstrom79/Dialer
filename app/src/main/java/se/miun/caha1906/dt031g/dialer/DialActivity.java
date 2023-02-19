@@ -3,6 +3,7 @@ package se.miun.caha1906.dt031g.dialer;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.SoundPool;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,6 +14,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class DialActivity extends AppCompatActivity {
 
@@ -165,6 +169,9 @@ public class DialActivity extends AppCompatActivity {
             // Get the phone number from the display text
             String phoneNumber = numberDisplay.getText().toString();
 
+            // Save the phone number to SharedPreferences
+            savePhoneNumber(phoneNumber);
+
             // Encodes the phone number to get #
             String encodedPhoneNumber = Uri.encode(phoneNumber);
 
@@ -237,6 +244,31 @@ public class DialActivity extends AppCompatActivity {
         );
 
     }
+
+    /**
+     * Saves phone nuber to Set
+     * */
+    private void savePhoneNumber(String phoneNumber) {
+
+        // Get the SharedPreferences object
+        SharedPreferences sharedPreferences = getSharedPreferences("phone_numbers", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        // Get the existing set of phone numbers, or create a new set if it doesn't exist
+        Set<String> phoneNumbers = sharedPreferences.getStringSet("phone_numbers", new HashSet<>());
+
+        // Add the new phone number to the set
+        phoneNumbers.add(phoneNumber);
+
+        //TODO:remove
+        Toast.makeText(this, "X"+phoneNumbers, Toast.LENGTH_SHORT).show();
+        //toast.show();
+
+        // Save the updated set of phone numbers
+        editor.putStringSet("phone_numbers", phoneNumbers);
+        editor.apply();
+    }
+
 
     /**
      * Updates the numberdisplay every time a new digit is pushed

@@ -61,4 +61,16 @@
     <string name="numbersDialedTextView"></string>
     <string name="btnDeleteText" />
     <string name="btnCallText" />
+    <string name="settings">Inställningar</string>
+    <string name="store_numbers_key">Spara nummer</string>
+    <string name="store_numbers_title">Spara nummer</string>
+
+    <string name="store_numbers_summary_on">Uppringda telefonnummer lagras så att de kan ses senare</string>
+    <string name="store_numbers_summary_off">Uppringda telefonnummer sparas ej</string>
+    <string name="delete_numbers_key">Radera nummer</string>
+    <string name="delete_numbers_title">Radera sparade nummer</string>
+    <string name="delete_numbers_summary">Radera sparade nummer från minnet</string>
+    <string name="textViewno_telephone_numbers_are_stored">Inga nummer sparas</string>
+
+
 </resources>

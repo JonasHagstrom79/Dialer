@@ -68,5 +68,14 @@
     <string name="btnDeleteText" />
     <string name="btnCallText" />
     <string name="settings">Settings</string>
+    <string name="store_numbers_key">Store numbers</string>
+    <string name="store_numbers_title">Store numbers</string>
+    <string name="store_numbers_summary_on">Dialed telephone numbers are stored so that they can be viewed later</string>
+    <string name="store_numbers_summary_off">Dialed telephone numbers are not stored</string>
+    <string name="delete_numbers_key">Delete numbers</string>
+    <string name="delete_numbers_title">Delete stored numbers</string>
+    <string name="delete_numbers_summary">Delete stored telephone numbers from storage"</string>
+    <string name="textViewno_telephone_numbers_are_stored">No telephone numbers are stored</string>
+
 
 </resources>

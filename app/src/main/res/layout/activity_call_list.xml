@@ -7,10 +7,19 @@
     tools:context=".CallListActivity">
 
     <TextView
-        android:id="@+id/textView_CallList"
+        android:id="@+id/empty_list_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/textView_CallList"
+        android:text="@string/textViewno_telephone_numbers_are_stored"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+
+        android:id="@+id/recyclerViewCallList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
