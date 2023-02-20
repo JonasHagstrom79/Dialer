@@ -250,6 +250,9 @@ public class DialActivity extends AppCompatActivity {
      * */
     private void savePhoneNumber(String phoneNumber) {
 
+//        //TODO:remove
+//        Toast.makeText(this, "X"+phoneNumber, Toast.LENGTH_SHORT).show();
+
         // Get the SharedPreferences object
         SharedPreferences sharedPreferences = getSharedPreferences("phone_numbers", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
