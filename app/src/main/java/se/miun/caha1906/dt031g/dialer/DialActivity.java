@@ -1,6 +1,7 @@
 package se.miun.caha1906.dt031g.dialer;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -35,6 +36,8 @@ public class DialActivity extends AppCompatActivity {
     Button buttonCall;
 
     Dialpad d;
+
+    SoundPlayer s;// = new SoundPlayer();
 
     // Handle the menu
     @Override
@@ -76,8 +79,18 @@ public class DialActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialpad);//test ger dailpad där den ska vara
 
+
         //Get the views
         findViews();
+
+
+        // Register listener for changes in shared preference
+//        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        sharedPreferences.registerOnSharedPreferenceChangeListener((SharedPreferences.OnSharedPreferenceChangeListener) this);
+
+//        Intent intent = getIntent();
+//        boolean shouldStoreNumbers = intent.getBooleanExtra("Store numbers", true);
+//        Log.d("DialActivity", "BoolDial "+ shouldStoreNumbers);
 
         // Set up listener on buttons
         buttonOne.setDialpadClickListener(new DialpadButton.DialpadClickListener() {
@@ -169,6 +182,20 @@ public class DialActivity extends AppCompatActivity {
             // Get the phone number from the display text
             String phoneNumber = numberDisplay.getText().toString();
 
+            // Get the value of the "storeNumbers" extra
+//            boolean shouldStoreNumbers = getIntent().getBooleanExtra("storeNumbers",  true);
+//            Log.d("DialActivity", "BooleanDial "+shouldStoreNumbers);//TODO:remove!!!
+
+//            if (shouldStoreNumbers) {
+//
+//                // Save the phone number to SharedPreferences
+//                savePhoneNumber(phoneNumber);
+//            }else {
+//
+//                // Notify the user that the phone number wasn't saved
+//                Toast.makeText(this, "Phone numbers are not being stored", Toast.LENGTH_SHORT).show();
+//            }
+
             // Save the phone number to SharedPreferences
             savePhoneNumber(phoneNumber);
 
@@ -192,8 +219,13 @@ public class DialActivity extends AppCompatActivity {
 //
 //            }
 
+//            // Create a new instance of SoundPlayer to start playing sounds again
+//            SoundPlayer.getInstance(this);
+
             // Start the Intent, which will open the device's phone app with the phone number pre-filled
             startActivity(callIntent);
+
+
 
         });
 
@@ -253,23 +285,85 @@ public class DialActivity extends AppCompatActivity {
 //        //TODO:remove
 //        Toast.makeText(this, "X"+phoneNumber, Toast.LENGTH_SHORT).show();
 
+//        // Get the SharedPreferences object
+//        SharedPreferences sharedPreferences = getSharedPreferences("phone_numbers", MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//
+//        // Get the value of the "store_numbers" key, defaulting to true if the key isn't found
+//        boolean shouldStoreNumbers = sharedPreferences.getBoolean("Store numbers", true);
+//
+//        if (shouldStoreNumbers) {
+//
+//            // Get the existing set of phone numbers, or create a new set if it doesn't exist
+//            Set<String> phoneNumbers = sharedPreferences.getStringSet("phone_numbers", new HashSet<>());
+//
+//            // Add the new phone number to the set
+//            phoneNumbers.add(phoneNumber);
+//
+//            // Save the updated set of phone numbers
+//            editor.putStringSet("phone_numbers", phoneNumbers);
+//            editor.apply();
+//
+//        } else {
+//
+//            // Notify the user that the phone number wasn't saved
+//            Toast.makeText(this, "Phone numbers are not being stored", Toast.LENGTH_SHORT).show();// Notify the user that the phone number wasn't saved
+//
+//        }
         // Get the SharedPreferences object
         SharedPreferences sharedPreferences = getSharedPreferences("phone_numbers", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        // Get the existing set of phone numbers, or create a new set if it doesn't exist
-        Set<String> phoneNumbers = sharedPreferences.getStringSet("phone_numbers", new HashSet<>());
+        // Get the value of "store_numbers" and default to true if the key isn't found
+//        boolean shouldStoreNumbers = sharedPreferences.getBoolean(getString(R.string.store_numbers_key), true); //TODO:här, få in boolen!!!
+//        Log.d("DialActivity", "BooleanDial "+shouldStoreNumbers);//TODO:remove!!!
 
-        // Add the new phone number to the set
-        phoneNumbers.add(phoneNumber);
+        Intent settingsIntent = getIntent();
+        Boolean val = settingsIntent.getBooleanExtra("storeNumbers", true);
+//        Boolean abc = settingsIntent.getExtras().getBoolean("Store numbers");
+//        Log.d("DialActivity", "Intent-check "+ abc);
+        Log.d("DialActivity", "Intent-check "+ val);
+        boolean shouldStoreNumbers = settingsIntent.getBooleanExtra("storeNumbers", true);
+        Log.d("DialActivity", "BoolDial "+ shouldStoreNumbers);
 
-        //TODO:remove
-        Toast.makeText(this, "X"+phoneNumbers, Toast.LENGTH_SHORT).show();
-        //toast.show();
+        if (shouldStoreNumbers) {
+            // Get the existing set of phone numbers, or create a new set if it doesn't exist
+            Set<String> phoneNumbers = sharedPreferences.getStringSet("phone_numbers", new HashSet<>());
 
-        // Save the updated set of phone numbers
-        editor.putStringSet("phone_numbers", phoneNumbers);
-        editor.apply();
+            // Add the new phone number to the set
+            phoneNumbers.add(phoneNumber);
+
+            // Save the updated set of phone numbers
+            editor.putStringSet("phone_numbers", phoneNumbers);
+            editor.apply();
+        } else {
+            // Notify the user that the phone number wasn't saved
+            Toast.makeText(this, "Phone numbers are not being stored", Toast.LENGTH_SHORT).show();
+        }
+
+
+
+
+
+
+
+//        // Get the SharedPreferences object
+//        SharedPreferences sharedPreferences = getSharedPreferences("phone_numbers", MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//
+//        // Get the existing set of phone numbers, or create a new set if it doesn't exist
+//        Set<String> phoneNumbers = sharedPreferences.getStringSet("phone_numbers", new HashSet<>());
+//
+//        // Add the new phone number to the set
+//        phoneNumbers.add(phoneNumber);
+//
+//        //TODO:remove
+//        Toast.makeText(this, "X"+phoneNumbers, Toast.LENGTH_SHORT).show();
+//        //toast.show();
+//
+//        // Save the updated set of phone numbers
+//        editor.putStringSet("phone_numbers", phoneNumbers);
+//        editor.apply();
     }
 
 
@@ -322,6 +416,13 @@ public class DialActivity extends AppCompatActivity {
         super.onStop();
         SoundPlayer s = SoundPlayer.getInstance(this);
         s.destroy();
+    }
+
+    // Re-initializes the soundpool when returning to DialActivity
+    @Override
+    protected void onResume() {
+        super.onResume();
+        s = SoundPlayer.getInstance(this);
     }
 
 

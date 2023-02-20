@@ -1,7 +1,9 @@
 package se.miun.caha1906.dt031g.dialer;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -11,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
+import androidx.preference.SwitchPreferenceCompat;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -39,6 +42,7 @@ public class SettingsActivity extends AppCompatActivity {
 
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
 
+            // Handles the delete of all numbers
             Preference deleteNumbersPref = findPreference(getString(R.string.delete_numbers_key));
             deleteNumbersPref.setOnPreferenceClickListener(preference -> {
                 // Get the SharedPreferences object
@@ -56,7 +60,46 @@ public class SettingsActivity extends AppCompatActivity {
 
             });
 
+//            // Add listener to update "store_numbers" value
+//            PreferenceManager.getDefaultSharedPreferences(getContext())
+//                    .registerOnSharedPreferenceChangeListener((SharedPreferences.OnSharedPreferenceChangeListener) this);
+
+            // Handels the storage of numbers On - Off
+            SwitchPreferenceCompat storeNumbersPref = findPreference(getString(R.string.store_numbers_key));
+            storeNumbersPref.setOnPreferenceChangeListener((preference, newValue) -> {
+                // Get the new value of the switch
+                boolean shouldStoreNumbers = (Boolean) newValue;
+                Log.d("SettingsActivity", "BooleanSet "+shouldStoreNumbers);
+
+                // Create an intent to pass the value to DialActivity
+                Intent settingsIntent = new Intent(getActivity(), DialActivity.class);
+//                Intent intent = new Intent(getContext(), DialActivity.class);
+                settingsIntent.putExtra("storeNumbers", shouldStoreNumbers);
+
+//                startActivity(intent);
+                Log.d("SettingsActivity", "BooleanSetSist "+shouldStoreNumbers);
+                return true;
+            });
+
         }
+
+//        @Override
+//        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+//            if (key.equals(getString(R.string.store_numbers_key))) {
+//                boolean shouldStoreNumbers = sharedPreferences.getBoolean(key, true);
+//                Log.d("SettingsActivity", "BooleanSet "+shouldStoreNumbers);
+//                // Update the value of "store_numbers"
+//                sharedPreferences.edit().putBoolean(key, shouldStoreNumbers).apply();
+//            }
+//        }
+
+//        @Override
+//        public void onDestroy() {
+//            super.onDestroy();
+//            // Remove the listener when the fragment is destroyed
+//            PreferenceManager.getDefaultSharedPreferences(getContext())
+//                    .unregisterOnSharedPreferenceChangeListener((SharedPreferences.OnSharedPreferenceChangeListener) this);
+//        }
 
 
 

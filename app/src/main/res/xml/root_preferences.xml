@@ -7,10 +7,8 @@
         app:summaryOff="@string/store_numbers_summary_off"
         app:defaultValue="true"
         app:icon="@drawable/ic_save_nubers"/>
-    <!--        app:title="@string/store_numbers_title"-->
-    <!--        app:summaryOn="@string/store_numbers_summary_on"-->
-    <!--        app:summaryOff="@string/store_numbers_summary_off"-->
 
+<!--    app:defaultValue="true"-->
     <Preference
         app:key="@string/delete_numbers_key"
         app:title="@string/delete_numbers_title"

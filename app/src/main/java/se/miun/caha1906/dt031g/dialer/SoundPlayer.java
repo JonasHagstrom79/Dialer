@@ -66,47 +66,49 @@ public class SoundPlayer {
      */
     public void playSound(DialpadButton d) {
 
-        // Use title to play sound in res/raw
-        switch (d.getTitle()) {
 
-            case "0":
-                soundPool.play(soundId[0], 1f, 1f, 1,0,1f);
-                break;
-            case "1":
-                soundPool.play(soundId[1], 1f, 1f, 1,0,1f);
-                break;
-            case "2":
-                soundPool.play(soundId[2], 1f, 1f, 1,0,1f);
-                break;
-            case "3":
-                soundPool.play(soundId[3], 1f, 1f, 1,0,1f);
-                break;
-            case "4":
-                soundPool.play(soundId[4], 1f, 1f, 1,0,1f);
-                break;
-            case "5":
-                soundPool.play(soundId[5], 1f, 1f, 1,0,1f);
-                break;
-            case "6":
-                soundPool.play(soundId[6], 1f, 1f, 1,0,1f);
-                break;
-            case "7":
-                soundPool.play(soundId[7], 1f, 1f, 1,0,1f);
-                break;
-            case "8":
-                soundPool.play(soundId[8], 1f, 1f, 1,0,1f);
-                break;
-            case "9":
-                soundPool.play(soundId[9], 1f, 1f, 1,0,1f);
-                break;
-            case "#":
-                soundPool.play(soundId[10], 1f, 1f, 1,0,1f);
-                break;
-            case "*":
-                soundPool.play(soundId[11], 1f, 1f, 1,0,1f);
-                break;
+            // Use title to play sound in res/raw
+            switch (d.getTitle()) {
 
-        }
+                case "0":
+                    soundPool.play(soundId[0], 1f, 1f, 1, 0, 1f);
+                    break;
+                case "1":
+                    soundPool.play(soundId[1], 1f, 1f, 1, 0, 1f);
+                    break;
+                case "2":
+                    soundPool.play(soundId[2], 1f, 1f, 1, 0, 1f);
+                    break;
+                case "3":
+                    soundPool.play(soundId[3], 1f, 1f, 1, 0, 1f);
+                    break;
+                case "4":
+                    soundPool.play(soundId[4], 1f, 1f, 1, 0, 1f);
+                    break;
+                case "5":
+                    soundPool.play(soundId[5], 1f, 1f, 1, 0, 1f);
+                    break;
+                case "6":
+                    soundPool.play(soundId[6], 1f, 1f, 1, 0, 1f);
+                    break;
+                case "7":
+                    soundPool.play(soundId[7], 1f, 1f, 1, 0, 1f);
+                    break;
+                case "8":
+                    soundPool.play(soundId[8], 1f, 1f, 1, 0, 1f);
+                    break;
+                case "9":
+                    soundPool.play(soundId[9], 1f, 1f, 1, 0, 1f);
+                    break;
+                case "#":
+                    soundPool.play(soundId[10], 1f, 1f, 1, 0, 1f);
+                    break;
+                case "*":
+                    soundPool.play(soundId[11], 1f, 1f, 1, 0, 1f);
+                    break;
+
+            }
+
 
     }
 
