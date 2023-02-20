@@ -1,5 +1,6 @@
 package se.miun.caha1906.dt031g.dialer;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -33,7 +34,9 @@ public class SettingsActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
     }
+
 
     public static class SettingsFragment extends PreferenceFragmentCompat {
 
@@ -81,6 +84,15 @@ public class SettingsActivity extends AppCompatActivity {
                 return true;
             });
 
+        }
+
+        //SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        public static boolean shouldStoreNumbers(Context context) {
+            SharedPreferences sharedPreferences = PreferenceManager.
+                    getDefaultSharedPreferences(context);
+            return sharedPreferences.getBoolean(
+                    context.getString(R.string.store_numbers_key), true); // default true
         }
 
 //        @Override
