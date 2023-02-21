@@ -57,14 +57,14 @@ public class SettingsActivity extends AppCompatActivity {
                 editor.apply();
 
                 // Notify the user that the numbers have been deleted
-                Toast.makeText(getContext(), "All stored numbers deleted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getString(R.string.toast_text_numbers_deleted), Toast.LENGTH_SHORT).show();
 
                 return true;
 
             });
 
 
-            // Handels the storage of numbers On - Off
+            // Handles the storage of numbers On - Off
             SwitchPreferenceCompat storeNumbersPref = findPreference(getString(R.string.store_numbers_key));
             storeNumbersPref.setOnPreferenceChangeListener((preference, newValue) -> {
                 // Get the new value of the switch
@@ -76,38 +76,26 @@ public class SettingsActivity extends AppCompatActivity {
 
                 settingsIntent.putExtra("storeNumbers", shouldStoreNumbers);
 
-
-                Log.d("SettingsActivity", "BooleanSetSist "+shouldStoreNumbers);
                 return true;
+
             });
 
         }
 
+        /**
+         * This is a public static method that takes a Context object as an argument and returns a
+         * boolean. The method is used to retrieve the value of a shared preference store_numbers_key
+         * from the default SharedPreferences object associated with the given context. If the
+         * preference does not exist, the method returns true as default.
+         * @param context
+         * @return
+         */
         public static boolean shouldStoreNumbers(Context context) {
             SharedPreferences sharedPreferences = PreferenceManager.
                     getDefaultSharedPreferences(context);
             return sharedPreferences.getBoolean(
-                    context.getString(R.string.store_numbers_key), true); // default true
+                    context.getString(R.string.store_numbers_key), true);
         }
-
-//        @Override
-//        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-//            if (key.equals(getString(R.string.store_numbers_key))) {
-//                boolean shouldStoreNumbers = sharedPreferences.getBoolean(key, true);
-//                Log.d("SettingsActivity", "BooleanSet "+shouldStoreNumbers);
-//                // Update the value of "store_numbers"
-//                sharedPreferences.edit().putBoolean(key, shouldStoreNumbers).apply();
-//            }
-//        }
-
-//        @Override
-//        public void onDestroy() {
-//            super.onDestroy();
-//            // Remove the listener when the fragment is destroyed
-//            PreferenceManager.getDefaultSharedPreferences(getContext())
-//                    .unregisterOnSharedPreferenceChangeListener((SharedPreferences.OnSharedPreferenceChangeListener) this);
-//        }
-
 
 
     }

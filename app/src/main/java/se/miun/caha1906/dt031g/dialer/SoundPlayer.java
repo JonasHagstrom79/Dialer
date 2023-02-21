@@ -19,10 +19,6 @@ public class SoundPlayer {
 
     private static SoundPool soundPool;
 
-    private static File file;
-
-
-
     // Array for storing sounds to play
     private static final int[] soundId = new int[12];
 

@@ -22,14 +22,13 @@ import java.io.FileWriter;
 
 public class MainActivity extends AppCompatActivity {
 
+
     private static final String KEY_ABOUT_VALUE = "Aboutvalue";
     private boolean about = false;
 
-    SoundPlayer s;
 
     Button button, button2, button3, button4, button5;
 
-    String defaultVoice = Util.DEFAULT_VOICE; //Nytt
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,86 +135,29 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
 
-        Log.d("@Override","L90 onSavedInstanceState: about.value = " + about); //TODO: Remove!
         outState.putBoolean("Aboutvalue", about);
 
         super.onSaveInstanceState(outState);
     }
 
-    @Override //När man fortsätter kanske
+    @Override
     protected  void onResume() {
-        super.onResume(); // Always call super first
+
+        super.onResume();
 
         storeSound();
     }
 
-    @Override //Save data in onPause
+    @Override
     protected void onPause() {
+
         super.onPause();
-        // Från youtube2 4:27
-//        SharedPreferences.Editor preferencesEditor =
-//                mPreferences.edit();
-
-
-        //Spara ljuden?
-        writeFileOnInternalStorage(this,"rolig.txt","Snart är det jul");
-    }
-
-    public void writeFileOnInternalStorage(Context mcoContext, String sFileName, String sBody){
-            File dir = new File(mcoContext.getFilesDir(), "mydir");
-            if(!dir.exists()){
-                dir.mkdir();
-            }
-
-            try {
-                File gpxfile = new File(dir, sFileName);
-                FileWriter writer = new FileWriter(gpxfile);
-                writer.append(sBody);
-                writer.flush();
-                writer.close();
-            } catch (Exception e){
-                e.printStackTrace();
-            }
     }
 
     private void storeSound() {
 
-
-
-
-        File localDir = getApplicationContext().getFilesDir(); //localDir: "/data/user/0/se.miun,caha1906.dt031g.dialer.files"
-
-//        String test = "afag";
-//        File file = new File(
-//                getApplicationContext(), "filename", "clicks.txt");
-
-//        try (PrintWriter out = new PrintWriter(new FileWriter(
-//                new File(localDir, Util..getFilename(this))))) {
-//            out.println(button1Clicks);
-//            out.println(button2Clicks);
-//        } catch (IOException e) {
-//            // If an IOException occurs, we just ignore it
-//            Log.e(TAG, "Error writing number of clicks to file: " + e.getMessage());
-//        }
-        // Från stackoverflow nedan
-//        public void writeFileOnInternalStorage(Context mcoContext, String sFileName, String sBody){
-//            File dir = new File(mcoContext.getFilesDir(), "mydir");
-//            if(!dir.exists()){
-//                dir.mkdir();
-//            }
-//
-//            try {
-//                File gpxfile = new File(dir, sFileName);
-//                FileWriter writer = new FileWriter(gpxfile);
-//                writer.append(sBody);
-//                writer.flush();
-//                writer.close();
-//            } catch (Exception e){
-//                e.printStackTrace();
-//            }
-//        }
+        File localDir = getApplicationContext().getFilesDir();
 
     }
-
 
 }
