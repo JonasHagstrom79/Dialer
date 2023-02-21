@@ -63,30 +63,25 @@ public class SettingsActivity extends AppCompatActivity {
 
             });
 
-//            // Add listener to update "store_numbers" value
-//            PreferenceManager.getDefaultSharedPreferences(getContext())
-//                    .registerOnSharedPreferenceChangeListener((SharedPreferences.OnSharedPreferenceChangeListener) this);
 
             // Handels the storage of numbers On - Off
             SwitchPreferenceCompat storeNumbersPref = findPreference(getString(R.string.store_numbers_key));
             storeNumbersPref.setOnPreferenceChangeListener((preference, newValue) -> {
                 // Get the new value of the switch
                 boolean shouldStoreNumbers = (Boolean) newValue;
-                Log.d("SettingsActivity", "BooleanSet "+shouldStoreNumbers);
+
 
                 // Create an intent to pass the value to DialActivity
                 Intent settingsIntent = new Intent(getActivity(), DialActivity.class);
-//                Intent intent = new Intent(getContext(), DialActivity.class);
+
                 settingsIntent.putExtra("storeNumbers", shouldStoreNumbers);
 
-//                startActivity(intent);
+
                 Log.d("SettingsActivity", "BooleanSetSist "+shouldStoreNumbers);
                 return true;
             });
 
         }
-
-        //SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         public static boolean shouldStoreNumbers(Context context) {
             SharedPreferences sharedPreferences = PreferenceManager.

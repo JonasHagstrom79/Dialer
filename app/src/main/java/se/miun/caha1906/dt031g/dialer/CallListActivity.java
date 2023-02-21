@@ -2,15 +2,20 @@ package se.miun.caha1906.dt031g.dialer;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.Preference;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -19,16 +24,17 @@ import java.util.Set;
 
 public class CallListActivity extends AppCompatActivity {
 
+    // Declare a RecyclerView and a TextView as class members
     private RecyclerView phoneNumberList;
-
     private TextView emptyListText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call_list);
+        setTitle("Call list");
 
-        // Get the views
+        // Call the findViews method to initialize the views
         findViews();
 
         // Get the phone numbers from SharedPreferences
@@ -47,18 +53,65 @@ public class CallListActivity extends AppCompatActivity {
         }
 
         // Initialize the RecyclerView and set the adapter
-        //phoneNumberList = findViewById(R.id.recyclerViewCallList);
         phoneNumberList.setLayoutManager(new LinearLayoutManager(this));
         phoneNumberList.setAdapter(new PhoneNumberAdapter(new ArrayList<>(phoneNumbers)));
 
     }
 
-    // Get the views
+    /**
+     * Method to initialize the views
+     */
     private void findViews() {
 
         phoneNumberList = findViewById(R.id.recyclerViewCallList);
         emptyListText = findViewById(R.id.empty_list_text);
 
+    }
+
+    // This method is called to inflate the menu layout in the AppBar.
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.call_list_menu, menu);
+        return true;
+    }
+
+    // This method is called when a menu item in the AppBar is selected.
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        // Get the id
+        int id = item.getItemId();
+
+        // If the "Delete all numbers" menu item is selected, remove all numbers from SharedPreferences and display a toast
+        if (id == R.id.call_list_menu_delete_all_numbers) {
+
+            // Get the SharedPreferences object
+            SharedPreferences sharedPreferences = getSharedPreferences("phone_numbers", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+            // Remove the phone numbers from the set
+            editor.remove("phone_numbers");
+            editor.apply();
+
+            // Notify the user that the numbers have been deleted
+            Toast.makeText(this, getString(R.string.toast_text_numbers_deleted), Toast.LENGTH_SHORT).show();
+
+            // Reload the screen
+            reload();
+
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Reload the screen
+     */
+    private void reload() {
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
     }
 
     /**

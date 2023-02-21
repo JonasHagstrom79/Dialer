@@ -76,6 +76,6 @@
     <string name="delete_numbers_title">Delete stored numbers</string>
     <string name="delete_numbers_summary">Delete stored telephone numbers from storage"</string>
     <string name="textViewno_telephone_numbers_are_stored">No telephone numbers are stored</string>
-
+    <string name="toast_text_numbers_deleted">All stored numbers deleted</string>
 
 </resources>

@@ -71,6 +71,7 @@
     <string name="delete_numbers_title">Radera sparade nummer</string>
     <string name="delete_numbers_summary">Radera sparade nummer från minnet</string>
     <string name="textViewno_telephone_numbers_are_stored">Inga nummer sparas</string>
+    <string name="toast_text_numbers_deleted">Alla sparade nummer raderades</string>
 
 
 </resources>
