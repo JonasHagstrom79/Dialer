@@ -21,23 +21,18 @@ import java.util.Set;
 
 public class DialActivity extends AppCompatActivity {
 
-    // Gets the user to the phone
-    Intent intent = new Intent(Intent.ACTION_DIAL);
 
-    // Phone number to be called
-    public static final String ACTION_DIAL = "tel:#0101428138";
-
-    // Initiate views
+    // Initialize views for the buttons and number display
     DialpadButton buttonOne, buttonTwo, buttonThree, buttonFour, buttonFive, buttonSix,
-            buttonSeven, buttonEight, buttonNine, buttonZero, buttonStar, buttonPound;//,
-            //buttonCall;
+            buttonSeven, buttonEight, buttonNine, buttonZero, buttonStar, buttonPound;
+
     TextView numberDisplay;
 
-    Button buttonCall;
+    // Initialize views for the call and delete buttons
+    Button buttonCall, buttonDelete;
 
-    Dialpad d;
-
-    SoundPlayer s;// = new SoundPlayer();
+    // Initialize a SoundPlayer object to play sounds
+    SoundPlayer s;
 
     // Handle the menu
     @Override
@@ -49,27 +44,21 @@ public class DialActivity extends AppCompatActivity {
     // Handle user interactions with the menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle menu item selection
-//        switch (item.getItemId()) {
-//            case R.id.menu_item_1:
-//                // Do something when menu item 1 is selected
-//                return true;
-//            case R.id.menu_item_2:
-//                // Do something when menu item 2 is selected
-//                return true;
-//            default:
 
+        // Get the ID of the selected menu item
         int id = item.getItemId();
 
+        // Check which menu item was selected
         if(id == R.id.menu_settings) {
 
+            // Create a new intent to start the SettingsActivity
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
             return true;
 
         }
 
-
+        // If no menu item was selected, return the result of the superclass method
         return super.onOptionsItemSelected(item);
 
     }
@@ -77,20 +66,11 @@ public class DialActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialpad);//test ger dailpad där den ska vara
+        setContentView(R.layout.dialpad);
 
 
         //Get the views
         findViews();
-
-
-        // Register listener for changes in shared preference
-//        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-//        sharedPreferences.registerOnSharedPreferenceChangeListener((SharedPreferences.OnSharedPreferenceChangeListener) this);
-
-//        Intent intent = getIntent();
-//        boolean shouldStoreNumbers = intent.getBooleanExtra("Store numbers", true);
-//        Log.d("DialActivity", "BoolDial "+ shouldStoreNumbers);
 
         // Set up listener on buttons
         buttonOne.setDialpadClickListener(new DialpadButton.DialpadClickListener() {
@@ -182,20 +162,6 @@ public class DialActivity extends AppCompatActivity {
             // Get the phone number from the display text
             String phoneNumber = numberDisplay.getText().toString();
 
-            // Get the value of the "storeNumbers" extra
-//            boolean shouldStoreNumbers = getIntent().getBooleanExtra("storeNumbers",  true);
-//            Log.d("DialActivity", "BooleanDial "+shouldStoreNumbers);//TODO:remove!!!
-
-//            if (shouldStoreNumbers) {
-//
-//                // Save the phone number to SharedPreferences
-//                savePhoneNumber(phoneNumber);
-//            }else {
-//
-//                // Notify the user that the phone number wasn't saved
-//                Toast.makeText(this, "Phone numbers are not being stored", Toast.LENGTH_SHORT).show();
-//            }
-
             // Save the phone number to SharedPreferences
             savePhoneNumber(phoneNumber);
 
@@ -208,35 +174,16 @@ public class DialActivity extends AppCompatActivity {
             // Create a new Intent with the ACTION_DIAL action and the Uri with the phone number
             Intent callIntent = new Intent(Intent.ACTION_DIAL, phoneUri);
 
-//            if (callIntent.resolveActivity(getPackageManager()) != null) {
-//
-//                // Start the Intent, which will open the device's phone app with the phone number pre-filled
-//                startActivity(callIntent);
-//
-//            } else {
-//                // Handle the case where there is no activity that can handle the intent
-//                Toast.makeText(this, "No phone app found", Toast.LENGTH_SHORT).show();
-//
-//            }
-
-//            // Create a new instance of SoundPlayer to start playing sounds again
-//            SoundPlayer.getInstance(this);
-
             // Start the Intent, which will open the device's phone app with the phone number pre-filled
             startActivity(callIntent);
 
-
-
         });
 
-        // Button for delete number
-        Button buttonDelete = (Button) findViewById(R.id.btnDelete);
 
         // Set listener for click
         buttonDelete.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        Toast.makeText(DialActivity.this, "Short click", Toast.LENGTH_SHORT).show();
                         // Gets the text value
                         TextView mess = findViewById(R.id.numbersDialedTextView);
                         // Transform to string
@@ -255,13 +202,12 @@ public class DialActivity extends AppCompatActivity {
                     }
                 }
         );
+
         // Set listener for long-click
         buttonDelete.setOnLongClickListener(
                 new View.OnLongClickListener() {
                     public boolean onLongClick(View v)
                     {
-                        buttonDelete.setText("LOOOOOONG Click!");
-                        Toast.makeText(DialActivity.this, "Long click", Toast.LENGTH_SHORT).show();
                         // Gets the text value
                         TextView mess = findViewById(R.id.numbersDialedTextView);
                         // Transform to string
@@ -289,7 +235,6 @@ public class DialActivity extends AppCompatActivity {
         // Get the value from save-switch
         boolean shouldStoreNumbers = SettingsActivity.SettingsFragment.shouldStoreNumbers(this);
 
-
         if (shouldStoreNumbers) {
             // Get the existing set of phone numbers, or create a new set if it doesn't exist
             Set<String> phoneNumbers = sharedPreferences.getStringSet("phone_numbers", new HashSet<>());
@@ -302,11 +247,10 @@ public class DialActivity extends AppCompatActivity {
             editor.apply();
         } else {
             // Notify the user that the phone number wasn't saved
-            Toast.makeText(this, "Phone numbers are not being stored", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.toast_text_not_store_numbers), Toast.LENGTH_SHORT).show();
         }
 
     }
-
 
     /**
      * Updates the numberdisplay every time a new digit is pushed
@@ -328,7 +272,7 @@ public class DialActivity extends AppCompatActivity {
      * */
     private void findViews() {
 
-        // Dial buttons
+        // Dialpad buttons
         buttonOne = findViewById(R.id.DialpadButtonOne);
         buttonTwo = findViewById(R.id.DialpadButtonTwo);
         buttonThree = findViewById(R.id.DialpadButtonThree);
@@ -344,12 +288,12 @@ public class DialActivity extends AppCompatActivity {
 
         // Regular buttons
         buttonCall = findViewById(R.id.btnCall);
+        buttonDelete = findViewById(R.id.btnDelete);
 
         // Textview
         numberDisplay = findViewById(R.id.numbersDialedTextView);
 
     }
-
 
     // Free resources from SoundPlayer as it stops
     @Override

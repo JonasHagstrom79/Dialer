@@ -32,7 +32,7 @@ public class CallListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call_list);
-        setTitle("Call list");
+        setTitle(R.string.call_list_bar_display_name);
 
         // Call the findViews method to initialize the views
         findViews();
