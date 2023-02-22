@@ -1,10 +1,15 @@
 package se.miun.caha1906.dt031g.dialer;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.media.SoundPool;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,6 +26,11 @@ import java.util.Set;
 
 public class DialActivity extends AppCompatActivity {
 
+
+    private static final int REQUEST_CALL_PHONE_PERMISSION =1;
+    public static final String CALL_PHONE = "android.permission.CALL_PHONE";
+
+    private Intent callIntent;
 
     // Initialize views for the buttons and number display
     DialpadButton buttonOne, buttonTwo, buttonThree, buttonFour, buttonFive, buttonSix,
@@ -159,23 +169,20 @@ public class DialActivity extends AppCompatActivity {
         // Set click listener
         buttonCall.setOnClickListener(view -> {
 
-            // Get the phone number from the display text
-            String phoneNumber = numberDisplay.getText().toString();
 
-            // Save the phone number to SharedPreferences
-            savePhoneNumber(phoneNumber);
+            // Check if the CALL_PHONE permission has been granted by the user
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
 
-            // Encodes the phone number to get #
-            String encodedPhoneNumber = Uri.encode(phoneNumber);
+                // Request the permission from the user
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL_PHONE_PERMISSION);
 
-            // Create a Uri with the phone number to be used in the Intent
-            Uri phoneUri = Uri.parse("tel:" + encodedPhoneNumber);
+            } else {
 
-            // Create a new Intent with the ACTION_DIAL action and the Uri with the phone number
-            Intent callIntent = new Intent(Intent.ACTION_DIAL, phoneUri);
+                // Start the Intent, which will initiate the call directly
+                String phoneNumber = numberDisplay.getText().toString();
+                makeCall(callIntent, phoneNumber, Intent.ACTION_CALL);
 
-            // Start the Intent, which will open the device's phone app with the phone number pre-filled
-            startActivity(callIntent);
+            }
 
         });
 
@@ -224,7 +231,51 @@ public class DialActivity extends AppCompatActivity {
     }
 
     /**
-     * Saves phone number to Set
+     * Makes the call
+     * @param callIntent the intent
+     * @param phoneNumber number to be dialed
+     * @param action depends on permisson granted by user
+     */
+    private void makeCall(Intent callIntent, String phoneNumber, String action) {
+        // Save the phone number to SharedPreferences
+        savePhoneNumber(phoneNumber);
+
+        // Encodes the phone number to get #
+        String encodedPhoneNumber = Uri.encode(phoneNumber);
+
+        // Create a Uri with the phone number to be used in the Intent
+        Uri phoneUri = Uri.parse("tel:" + encodedPhoneNumber);
+
+        // Create a new Intent with the specified action and the Uri with the phone number
+        callIntent = new Intent(action, phoneUri);
+        startActivity(callIntent);
+    }
+
+
+    // Handle the result of the CALL_PHONE permission request
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        // Check if the requestCode matches the one used for requesting CALL_PHONE permission
+        if (requestCode == REQUEST_CALL_PHONE_PERMISSION) {
+            // Check if the permission was granted
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                // If permission granted, make a call using the phone number from the display text
+                String phoneNumber = numberDisplay.getText().toString();
+                makeCall(callIntent, phoneNumber, Intent.ACTION_CALL);
+
+            } else {
+
+                // If permission denied, make a dial instead of a call
+                String phoneNumber = numberDisplay.getText().toString();
+                makeCall(callIntent, phoneNumber, Intent.ACTION_DIAL);
+            }
+        }
+    }
+
+    /**
+     * Saves phone number to sharedPreferences
      * */
     private void savePhoneNumber(String phoneNumber) {
 
