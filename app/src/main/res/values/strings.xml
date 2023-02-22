@@ -18,8 +18,8 @@
                                 "* Show on a Map where previous calls are dialed from"</string>
     <string name="title_about">About</string>
     <string name="btn_ok">OK</string>
-    <string name ="toast_ok">Selected Option: OK</string>
-    <string name ="toast_msg">Content already viewed</string>
+    <string name="toast_ok">Selected Option: OK</string>
+    <string name="toast_msg">Content already viewed</string>
     <string name="Aboutvalue"></string>
     <string name="Empty"></string>
     <string name="ABC">ABC</string>

@@ -26,10 +26,10 @@ import java.util.Set;
 
 public class DialActivity extends AppCompatActivity {
 
-
+    // A constant value representing the request code for CALL_PHONE permission.
     private static final int REQUEST_CALL_PHONE_PERMISSION =1;
-    public static final String CALL_PHONE = "android.permission.CALL_PHONE";
 
+    // An Intent object that will be used to make a phone call.
     private Intent callIntent;
 
     // Initialize views for the buttons and number display

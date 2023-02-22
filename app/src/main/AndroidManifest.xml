@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Dialer"
         tools:targetApi="31">
-
+        <activity
+            android:name=".DownloadActivity"
+            android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -26,7 +28,6 @@
              project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
              "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
         -->
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyChCTxjAz2NWkfAKqIpzDkY38EP5XoTVLA" />
@@ -36,11 +37,10 @@
             android:exported="false"
             android:label="@string/title_activity_maps"
             android:parentActivityName=".MainActivity">
-        <meta-data
-            android:name="android.app.lib_name"
-            android:value="" />
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
         </activity>
-
         <activity
             android:name=".SettingsActivity"
             android:exported="false"
@@ -68,8 +68,8 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleTop"
-            android:exported="true">
+            android:exported="true"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -80,17 +80,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
     </application>
 
-
-<!--    <uses-permission android:name="android.permission.CALL_PHONE" />-->
-<!--    <uses-permission android:name="android.permission.CALL_PHONE"/>-->
-
-    <!--Remove
-    <uses-feature>
-        
-    </uses-feature>  -->
-    <!--
-    <uses-permission android:name="android.permission.SEND_SMS" /> Remove -->
 </manifest>
