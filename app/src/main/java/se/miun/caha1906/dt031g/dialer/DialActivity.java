@@ -58,16 +58,20 @@ public class DialActivity extends AppCompatActivity {
         // Get the ID of the selected menu item
         int id = item.getItemId();
 
-        // Check which menu item was selected
-        if(id == R.id.menu_settings) {
+        switch (id) {
+            // Existing cases
+            case R.id.menu_download_voices:
+                //Starts downloadactivity
+                Intent downloadIntent = new Intent(DialActivity.this, DownloadActivity.class);
+                startActivity(downloadIntent);
+                return true;
 
-            // Create a new intent to start the SettingsActivity
-            Intent intent = new Intent(this, SettingsActivity.class);
-            startActivity(intent);
-            return true;
-
+            case R.id.menu_settings:
+                //Starts settingsactivity
+                Intent intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
+                return true;
         }
-
         // If no menu item was selected, return the result of the superclass method
         return super.onOptionsItemSelected(item);
 

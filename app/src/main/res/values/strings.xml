@@ -79,5 +79,7 @@
     <string name="toast_text_numbers_deleted">All stored numbers deleted</string>
     <string name="call_list_bar_display_name">Call list</string>
     <string name="toast_text_not_store_numbers">Phone numbers are not being stored</string>
+    <string name="btnDownloadVoices">Download voices</string>
+    <string name="menu_download_voices">Download voices</string>
 
 </resources>

@@ -74,6 +74,8 @@
     <string name="toast_text_numbers_deleted">Alla sparade nummer raderades</string>
     <string name="call_list_bar_display_name">Samtalslista</string>
     <string name="toast_text_not_store_numbers">Nummer sparas ej</string>
+    <string name="btnDownloadVoices">Ladda ner röster</string>
+    <string name="menu_download_voices">Ladda ner röster</string>
 
 
 </resources>

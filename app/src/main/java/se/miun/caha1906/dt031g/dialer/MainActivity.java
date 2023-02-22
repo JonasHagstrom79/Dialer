@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean about = false;
 
 
-    Button button, button2, button3, button4, button5;
+    Button button, button2, button3, button4, button5, buttonDownLoadActivity;
 
 
     @Override
@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         button2.setOnClickListener(view -> {
-            //s.testXX(); // not working
             startActivity(new Intent(MainActivity.this, CallListActivity.class));
         });
 
@@ -86,6 +85,13 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        buttonDownLoadActivity.setOnClickListener(view -> {
+
+            Intent intent = new Intent(MainActivity.this, DownloadActivity.class);
+            startActivity(intent);
+
+        });
+
     }
 
     /**
@@ -98,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
         button3 = findViewById(R.id.button3);
         button4 = findViewById(R.id.button4);
         button5 = findViewById(R.id.button5);
+        buttonDownLoadActivity = findViewById(R.id.buttonDownLoadActivity);
 
     }
 

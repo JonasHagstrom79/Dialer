@@ -26,7 +26,7 @@
         app:layout_constraintHorizontal_bias="0.612"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.553" />
+        app:layout_constraintVertical_bias="0.382" />
 
     <Button
         android:id="@+id/button2"
@@ -38,7 +38,7 @@
         app:layout_constraintHorizontal_bias="0.381"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.553" />
+        app:layout_constraintVertical_bias="0.382" />
 
     <Button
         android:id="@+id/button3"
@@ -50,7 +50,7 @@
         app:layout_constraintHorizontal_bias="0.381"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.705" />
+        app:layout_constraintVertical_bias="0.573" />
 
     <Button
         android:id="@+id/button4"
@@ -59,10 +59,10 @@
         android:text="@string/btn_map"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.611"
+        app:layout_constraintHorizontal_bias="0.612"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.705" />
+        app:layout_constraintVertical_bias="0.573" />
 
     <Button
         android:id="@+id/button5"
@@ -71,9 +71,21 @@
         android:text="@string/btn_about"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintHorizontal_bias="0.381"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.881" />
+        app:layout_constraintVertical_bias="0.768" />
+
+    <Button
+        android:id="@+id/buttonDownLoadActivity"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btnDownloadVoices"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.612"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.785" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

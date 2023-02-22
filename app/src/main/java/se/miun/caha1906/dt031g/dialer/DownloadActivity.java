@@ -7,6 +7,7 @@ import android.webkit.WebView;
 
 public class DownloadActivity extends AppCompatActivity {
 
+    // Webview to show voices to download
     private WebView webView;
 
 
@@ -23,6 +24,9 @@ public class DownloadActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Get the views
+     * */
     private void findViews() {
 
         webView = findViewById(R.id.webViewDownloadActivity);
