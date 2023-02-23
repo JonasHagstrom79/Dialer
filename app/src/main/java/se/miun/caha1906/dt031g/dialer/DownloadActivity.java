@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.util.Log;
 import android.webkit.DownloadListener;
 import android.webkit.URLUtil;
@@ -45,6 +46,9 @@ public class DownloadActivity extends AppCompatActivity {
     // To get paths from xml
     String url, voiceStoragePath;
 
+    // To show the download progress
+    ProgressDialog progressDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +57,11 @@ public class DownloadActivity extends AppCompatActivity {
 
         //Get the views
         findViews();
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Downloading...");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setCancelable(false);
 
         // Gets the values from xml.resource
         url = getString(R.string.url);
@@ -85,9 +94,24 @@ public class DownloadActivity extends AppCompatActivity {
                                         String mimetype, long contentLength) {
 
 
+                // Show the progress dialog
+                progressDialog.show();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                    }
+                }, 20);
+
                 // Start the download in the background thread
                 Executors.newSingleThreadExecutor().execute(() -> {
+
                     try {
+
+                        // Add sleep for 20ms
+                        Thread.sleep(20);
+
                         // Download the file
                         URL downloadUrl = new URL(url);
                         HttpURLConnection connection = (HttpURLConnection) downloadUrl.openConnection();
@@ -139,10 +163,18 @@ public class DownloadActivity extends AppCompatActivity {
 
                             Log.e(TAG, "Unzip failed");
                         }
+                    } catch (InterruptedException e) {
+
+                        Log.e(TAG, "Error downloading or unzipping file: " + e.getMessage());
 
                     } catch (IOException e) {
 
                         Log.e(TAG, "Error downloading or unzipping file: " + e.getMessage());
+
+                    } finally {
+
+                        // Dismiss the progress dialog
+                        progressDialog.dismiss();
 
                     }
                 });
