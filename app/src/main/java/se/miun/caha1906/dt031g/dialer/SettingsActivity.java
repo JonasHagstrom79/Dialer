@@ -27,13 +27,14 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
 
-
+        // Add the settings fragment to the activity
         if (savedInstanceState == null) {
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.settings, new SettingsFragment())
                     .commit();
         }
+        // Set the display home as up button in the action bar
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -41,14 +42,16 @@ public class SettingsActivity extends AppCompatActivity {
 
     }
 
-
+    // This is the fragment that contains the app settings
     public static class SettingsFragment extends PreferenceFragmentCompat {
 
+        // Method that creates the preferences UI based on an XML resource
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
 
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
 
+            // Get the ListPreference for the voice and set its summary to the current value
             ListPreference voicePref = findPreference(getString(R.string.listPreference_voice_key));
             voicePref.setSummary(voicePref.getEntry());
 
@@ -59,8 +62,17 @@ public class SettingsActivity extends AppCompatActivity {
             FileObserver fileObserver = new FileObserver(voicesDir.getPath()) {
                 @Override
                 public void onEvent(int event, String path) {
-                    // The directory has changed, so update the list of voices
-                    updateVoiceList();
+
+                    try {
+                        // The directory has changed, so update the list of voices
+                        updateVoiceList();
+
+                    } catch (Exception e) {
+                        // Log any errors that occur
+                        Log.e("SettingsActivity", "Error callling updatevoiceList()", e);
+
+                    }
+
                 }
             };
             fileObserver.startWatching();
@@ -68,38 +80,38 @@ public class SettingsActivity extends AppCompatActivity {
             // Update the list of available voices
             updateVoiceList();
 
+            // Set a listener for when the voice preference is changed
             voicePref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
-                    int index = voicePref.findIndexOfValue(newValue.toString());
-                    String voicePath = voicePref.getEntryValues()[index].toString();
-                    voicePref.setSummary(voicePref.getEntries()[index]);
 
-                    Toast.makeText(getContext(), voicePath, Toast.LENGTH_SHORT).show();
+                    try {
+                        // Get the index of the selected voice and its path
+                        int index = voicePref.findIndexOfValue(newValue.toString());
+                        String voicePath = voicePref.getEntryValues()[index].toString();
 
-                    // Set the selected voice path in SoundPlayer
-                    SoundPlayer.getInstance(getContext()).setVoicePath(voicePath);
+                        // Set the summary of the ListPreference to the selected voice
+                        voicePref.setSummary(voicePref.getEntries()[index]);
 
-                    Log.d("SettingsActivityXX", "Voicepath: "+voicePath);//TODO:test!
-                    return true;
+                        // Set the selected voice path in SoundPlayer
+                        SoundPlayer.getInstance(getContext()).setVoicePath(voicePath);
+
+                        return true;
+
+                    } catch (Exception e) {
+                        // Log any errors that occur and return false
+                        Log.e("SettingsActivity", "Error setting preference", e);
+                        return false;
+
+                    }
+
                 }
             });
 
-//            ListPreference voicePref = findPreference(getString(R.string.voice_key));
-
-//            voicePref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-//                @Override
-//                public boolean onPreferenceChange(Preference preference, Object newValue) {
-//                    int index = voicePref.findIndexOfValue(newValue.toString());
-//                    voicePref.setSummary(voicePref.getEntries()[index]);
-//                    return true;
-//                }
-//            });
-
-
-            // Handles the delete of all numbers
+            // Set a listener for when the delete numbers preference is clicked
             Preference deleteNumbersPref = findPreference(getString(R.string.delete_numbers_key));
             deleteNumbersPref.setOnPreferenceClickListener(preference -> {
+
                 // Get the SharedPreferences object
                 SharedPreferences sharedPreferences = getContext().getSharedPreferences("phone_numbers", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -119,6 +131,7 @@ public class SettingsActivity extends AppCompatActivity {
             // Handles the storage of numbers On - Off
             SwitchPreferenceCompat storeNumbersPref = findPreference(getString(R.string.store_numbers_key));
             storeNumbersPref.setOnPreferenceChangeListener((preference, newValue) -> {
+
                 // Get the new value of the switch
                 boolean shouldStoreNumbers = (Boolean) newValue;
 
@@ -143,8 +156,10 @@ public class SettingsActivity extends AppCompatActivity {
          * @return
          */
         public static boolean shouldStoreNumbers(Context context) {
+
             SharedPreferences sharedPreferences = PreferenceManager.
                     getDefaultSharedPreferences(context);
+
             return sharedPreferences.getBoolean(
                     context.getString(R.string.store_numbers_key), true);
         }
@@ -156,12 +171,12 @@ public class SettingsActivity extends AppCompatActivity {
          */
         private void updateVoiceList() {
 
-//            // Null check //TODO:gav jättefel!!
-//            if (!isAdded() || getContext() == null) {
-//                // Fragment is not attached or context is null, do nothing
-//                return;
-//
-//            }
+            // Null check for context and fragment
+            if (!isAdded() || getContext() == null) {
+                // Fragment is not attached or context is null, do nothing
+                return;
+
+            }
 
             ListPreference voicePref = findPreference(getString(R.string.listPreference_voice_key));
             voicePref.setSummary(voicePref.getEntry());

@@ -27,11 +27,13 @@ public class SoundPlayer {
     // Creates the singelton
     public static SoundPlayer getInstance(Context context) {
 
+        // Check if an instance of SoundPlayer already exists
         if(soundPlayer == null) {
 
             soundPlayer = new SoundPlayer();
 
         }
+        // Config the soundpool
         soundPool = new SoundPool.Builder()
                 // Config the soundpool
                 // Max sounds at once
@@ -39,33 +41,20 @@ public class SoundPlayer {
                 .build();
 
 
-        Log.d("SoundplayerXXX", "path: "+selectedVoicePath);
+        // Set the path to the default voice directory if no voice has been selected
         File path;
-//        //File path = new File(context.getFilesDir(), "voices");
-//        File path =Util.getDirForDefaultVoice(context);
+
         if (selectedVoicePath == null) {
 
             path =Util.getDirForDefaultVoice(context);
 
         } else {
+
             path = new File(selectedVoicePath);
+
         }
-//        if (path.exists()) {
-//            File[] files = path.listFiles();
-//            for (int i = 0; i < files.length; i++) {
-//                String filename = files[i].getName();
-//                int index = Integer.parseInt(filename.substring(0, 1));
-//                soundId[index] = soundPool.load(files[i].getPath(), 1);
-//            }
-//        }
-//        return soundPlayer;
-//    }
 
-
-        // Get the sounds from internal storage
-        //File path = Util.getDirForDefaultVoice(context);
-
-        // Load the sounds into the array
+        // Load the sounds from the voice directory
         soundId[0] = soundPool.load(path + "/zero."+Util.DEFAULT_VOICE_EXTENSION,1);
         soundId[1] = soundPool.load(path + "/one."+Util.DEFAULT_VOICE_EXTENSION, 1);
         soundId[2] = soundPool.load(path + "/two."+Util.DEFAULT_VOICE_EXTENSION, 1);
@@ -86,8 +75,6 @@ public class SoundPlayer {
      * Plays the sound of the DialpadButton
      */
     public void playSound(DialpadButton d) {
-
-
 
             // Use title to play sound in res/raw
             switch (d.getTitle()) {
@@ -135,11 +122,13 @@ public class SoundPlayer {
     }
 
     /**
-     * Sets the path to the sound to be played
+     * Sets the path to the sound to be played from internal storage
      * @param path path to sound
      */
     public void setVoicePath(String path) {
+
         selectedVoicePath = path;
+
     }
 
     /**
