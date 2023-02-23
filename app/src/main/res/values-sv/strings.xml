@@ -76,6 +76,7 @@
     <string name="toast_text_not_store_numbers">Nummer sparas ej</string>
     <string name="btnDownloadVoices">Ladda ner röster</string>
     <string name="menu_download_voices">Ladda ner röster</string>
+    <string name="listPreference_voice_title">Röst</string>
 
 
 </resources>

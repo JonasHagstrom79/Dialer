@@ -14,6 +14,8 @@ import java.util.Map;
 public class SoundPlayer {
 
 
+    // Path to the selected voice file
+    private static String selectedVoicePath;
 
     private static SoundPlayer soundPlayer = null;
 
@@ -37,8 +39,31 @@ public class SoundPlayer {
                 .build();
 
 
+        Log.d("SoundplayerXXX", "path: "+selectedVoicePath);
+        File path;
+//        //File path = new File(context.getFilesDir(), "voices");
+//        File path =Util.getDirForDefaultVoice(context);
+        if (selectedVoicePath == null) {
+
+            path =Util.getDirForDefaultVoice(context);
+
+        } else {
+            path = new File(selectedVoicePath);
+        }
+//        if (path.exists()) {
+//            File[] files = path.listFiles();
+//            for (int i = 0; i < files.length; i++) {
+//                String filename = files[i].getName();
+//                int index = Integer.parseInt(filename.substring(0, 1));
+//                soundId[index] = soundPool.load(files[i].getPath(), 1);
+//            }
+//        }
+//        return soundPlayer;
+//    }
+
+
         // Get the sounds from internal storage
-        File path = Util.getDirForDefaultVoice(context);
+        //File path = Util.getDirForDefaultVoice(context);
 
         // Load the sounds into the array
         soundId[0] = soundPool.load(path + "/zero."+Util.DEFAULT_VOICE_EXTENSION,1);
@@ -61,6 +86,7 @@ public class SoundPlayer {
      * Plays the sound of the DialpadButton
      */
     public void playSound(DialpadButton d) {
+
 
 
             // Use title to play sound in res/raw
@@ -106,6 +132,14 @@ public class SoundPlayer {
             }
 
 
+    }
+
+    /**
+     * Sets the path to the sound to be played
+     * @param path path to sound
+     */
+    public void setVoicePath(String path) {
+        selectedVoicePath = path;
     }
 
     /**

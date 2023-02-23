@@ -9,4 +9,6 @@
         <item>reply</item>
         <item>reply_all</item>
     </string-array>
+    <string-array name="listPreference_voice_entries">voice_entries</string-array>
+    <string-array name="listPreference_voice_values">voice_values</string-array>
 </resources>

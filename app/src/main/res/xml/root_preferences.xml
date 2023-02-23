@@ -15,4 +15,13 @@
         app:summary="@string/delete_numbers_summary"
         app:icon="@drawable/ic_delete_numbers"/>
 
+    <ListPreference
+        app:key="@string/listPreference_voice_key"
+        app:title="@string/listPreference_voice_title"
+        app:summary="@string/listPreference_voice_summary"
+        app:entries="@array/listPreference_voice_entries"
+        app:entryValues="@array/listPreference_voice_values"
+        app:defaultValue="@string/listPreference_voice_default"
+        app:icon="@drawable/ic_voice"/>
+
 </PreferenceScreen>

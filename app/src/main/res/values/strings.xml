@@ -86,7 +86,13 @@
     <string name="voice_storage_path" translatable="false">/data/user/0/se.miun.caha1906.dt031g.dialer/files/voices/ </string>
     <string name="voices_path" translatable="false">voices/</string>
     <!---->
-
+    <string name="listPreference_voice_key" translatable="false">voice_key</string>
+    <string name="listPreference_voice_title" >Voice</string>
+    <string name="listPreference_voice_summary" translatable="false">voice_summary</string>
+    <string name="listPreference_voice_entries" translatable="false">voice_entries</string>
+    <string name="listPreference_voice_values" translatable="false">voice_values</string>
+    <string name="listPreference_voice_default" translatable="false">voice_values</string>
+    <!---->
 
 
 </resources>
