@@ -38,6 +38,8 @@ public class DialActivity extends AppCompatActivity {
 
     TextView numberDisplay;
 
+    String url, voiceStoragePath;
+
     // Initialize views for the call and delete buttons
     Button buttonCall, buttonDelete;
 
@@ -58,11 +60,18 @@ public class DialActivity extends AppCompatActivity {
         // Get the ID of the selected menu item
         int id = item.getItemId();
 
+        // Gets the values from xml.resource
+        url = getString(R.string.url);
+        voiceStoragePath = getString(R.string.voice_storage_path);
+
         switch (id) {
             // Existing cases
             case R.id.menu_download_voices:
                 //Starts downloadactivity
-                Intent downloadIntent = new Intent(DialActivity.this, DownloadActivity.class);
+
+                Intent downloadIntent = new Intent(this, DownloadActivity.class);
+                downloadIntent.putExtra("url", url);
+                downloadIntent.putExtra("voice_storage_path", voiceStoragePath);
                 startActivity(downloadIntent);
                 return true;
 

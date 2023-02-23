@@ -42,6 +42,7 @@ public class DownloadActivity extends AppCompatActivity {
     // Webview to show voices to download
     private WebView webView;
 
+    // To get paths from xml
     String url, voiceStoragePath;
 
 
@@ -53,27 +54,22 @@ public class DownloadActivity extends AppCompatActivity {
         //Get the views
         findViews();
 
-        // Load the web page into the WebView
+        // Gets the values from xml.resource
         url = getString(R.string.url);
         voiceStoragePath = getString(R.string.voice_storage_path);
+
+        // Load the web page into the WebView
         webView.loadUrl(url);
-
-        // Skapa Intent för DownloadActivity och ange URL och sökväg som extras
-//        Intent downloadIntent = new Intent(this, DownloadActivity.class);
-//        downloadIntent.putExtra("url", url);
-//        downloadIntent.putExtra("voice_storage_path", voiceStoragePath);
-//        startActivity(downloadIntent);
-
 
         // Create a custom WebViewClient
         WebViewClient webViewClient = new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+
                 // Load all URL links inside the WebView
-//                view.loadUrl(request.getUrl().toString());
-//                return true;
+
                 String url = request.getUrl().toString();
-                Toast.makeText(getApplicationContext(), "Clicked on: " + url, Toast.LENGTH_SHORT).show();
+
                 view.loadUrl(url);
                 return true;
             }
@@ -87,10 +83,6 @@ public class DownloadActivity extends AppCompatActivity {
             @Override
             public void onDownloadStart(String url, String userAgent, String contentDisposition,
                                         String mimetype, long contentLength) {
-                // Handle the download here
-
-
-
 
 
                 // Start the download in the background thread
@@ -107,9 +99,6 @@ public class DownloadActivity extends AppCompatActivity {
                         String fileName = URLUtil.guessFileName(url, contentDisposition, mimetype);
                         File destinationFile = new File(voiceStoragePath, fileName);
 
-                        Toast.makeText(getApplicationContext(), "DOWNLOAD: " + fileName, Toast.LENGTH_SHORT).show();
-
-
                         // Write the downloaded file to the destination
                         InputStream input = connection.getInputStream();
                         FileOutputStream output = new FileOutputStream(destinationFile);
@@ -121,24 +110,40 @@ public class DownloadActivity extends AppCompatActivity {
                         output.close();
                         input.close();
 
-                        // Unzip the file
-
+                        // Creates destination folder
                         File destinationDir = new File(getFilesDir(), getString(R.string.voices_path));
 
+                        // Creates folder if it doesnt exist
                         if (!destinationDir.exists()) {
                             destinationDir.mkdirs();
                         }
 
+                        // Unzip the file
                         boolean success = Util.unzip(destinationFile, destinationDir);
 
                         if (success) {
+
                             Log.d(TAG, "Unzip completed successfully");
+
+                            // Delete the downloaded file
+                            if (destinationFile.delete()) {
+
+                                Log.d(TAG, "Deleted downloaded file");
+
+                            } else {
+
+                                Log.w(TAG, "Failed to delete downloaded file");
+
+                            }
                         } else {
+
                             Log.e(TAG, "Unzip failed");
                         }
 
                     } catch (IOException e) {
+
                         Log.e(TAG, "Error downloading or unzipping file: " + e.getMessage());
+
                     }
                 });
             }
