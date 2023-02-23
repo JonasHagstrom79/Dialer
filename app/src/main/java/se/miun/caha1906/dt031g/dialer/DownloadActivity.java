@@ -96,13 +96,6 @@ public class DownloadActivity extends AppCompatActivity {
                 // Show the progress dialog
                 progressDialog.show();
 
-                // Add a delay of 20ms
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-
-                    }
-                }, 20);
 
                 // Start the download in the background thread
                 Executors.newSingleThreadExecutor().execute(() -> {
