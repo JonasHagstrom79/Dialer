@@ -87,8 +87,16 @@ public class MainActivity extends AppCompatActivity {
 
         buttonDownLoadActivity.setOnClickListener(view -> {
 
-            Intent intent = new Intent(MainActivity.this, DownloadActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(MainActivity.this, DownloadActivity.class);
+//            startActivity(intent);
+            Intent intent = new Intent(this, DownloadActivity.class);
+            String url = getString(R.string.url);
+            String voiceStoragePath = getString(R.string.voice_storage_path);//getFilesDir().getPath() + "/voices/";
+            intent.putExtra("url", url);
+            intent.putExtra("voice_storage_path", voiceStoragePath);
+            Log.d("MainActivity" ,"path_custom:     "+voiceStoragePath);                        // /data/user/0/se.miun.caha1906.dt031g.dialer/files/voices/
+            Log.d("MainActivity", "path_stringvalue "+ getString(R.string.voice_storage_path)); // /data/data/se.miun.caha1906.dt031g.dialer/files/voices/
+            startActivity(intent); //TODO:här!! fixa till pathsens
 
         });
 

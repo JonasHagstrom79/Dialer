@@ -81,5 +81,12 @@
     <string name="toast_text_not_store_numbers">Phone numbers are not being stored</string>
     <string name="btnDownloadVoices">Download voices</string>
     <string name="menu_download_voices">Download voices</string>
+    <!---->
+    <string name="url" translatable="false">https://dt031g.programvaruteknik.nu/dialer/voices/</string>
+    <string name="voice_storage_path" translatable="false">/data/user/0/se.miun.caha1906.dt031g.dialer/files/voices/ </string>
+    <string name="voices_path" translatable="false">voices/</string>
+    <!---->
+
+
 
 </resources>
